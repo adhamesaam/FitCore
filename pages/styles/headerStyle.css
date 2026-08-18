@@ -1,0 +1,198 @@
+:root {
+  --primary-dark: #12141c;
+  --secondary-dark: #1e2230;
+  --navy: #292e42;
+  --slate-light: #94a3b8;
+  --slate-medium: #64748b;
+  --neon-yellow: #ccff00;
+  --white: #ffffff;
+  --green: #10b981;
+  --red: #ef4444;
+  --black: #000000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--primary-dark);
+  color: var(--white);
+}
+
+/* Navbar Styling */
+nav.navbar {
+  background-color: var(--primary-dark) !important;
+  border-bottom: 3px solid var(--neon-yellow);
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Brand/Logo */
+.navbar-brand {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--neon-yellow) !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: var(--white) !important;
+  text-shadow: 0 0 10px var(--neon-yellow);
+}
+
+/* Navigation Links */
+.navbar-nav .nav-link {
+  color: var(--slate-light) !important;
+  font-weight: 600;
+  margin-left: 1.5rem;
+  padding: 0.5rem 0 !important;
+  position: relative;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+}
+
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--neon-yellow);
+  transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--neon-yellow) !important;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+.navbar-nav .nav-link.active {
+  color: var(--neon-yellow) !important;
+  font-weight: 700;
+}
+
+.navbar-nav .nav-link.active::after {
+  width: 100%;
+}
+
+/* Navbar Toggler (Mobile Menu Button) */
+.navbar-toggler {
+  border: 2px solid var(--neon-yellow) !important;
+  padding: 0.4rem 0.6rem;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.25rem rgba(204, 255, 0, 0.3);
+  border-color: var(--neon-yellow) !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23CCFF00' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Offcanvas Menu (Mobile) */
+.offcanvas {
+  background-color: var(--secondary-dark) !important;
+  border-left: 3px solid var(--neon-yellow);
+}
+
+.offcanvas-header {
+  border-bottom: 2px solid var(--neon-yellow);
+}
+
+.offcanvas-body {
+  background-color: var(--primary-dark) !important;
+}
+
+.offcanvas-title {
+  color: var(--neon-yellow) !important;
+  font-weight: 800;
+}
+
+.btn-close {
+  background-color: var(--slate-light);
+  filter: invert(1);
+}
+
+.btn-close:focus {
+  box-shadow: 0 0 0 0.25rem rgba(204, 255, 0, 0.3);
+}
+
+/* Offcanvas Navigation Links */
+.offcanvas .navbar-nav .nav-link {
+  color: var(--slate-light) !important;
+  font-weight: 600;
+  padding: 0.75rem 1rem !important;
+  margin: 0.25rem 0;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.offcanvas .navbar-nav .nav-link:hover {
+  background-color: var(--navy);
+  color: var(--neon-yellow) !important;
+  padding-left: 1.5rem !important;
+}
+
+.offcanvas .navbar-nav .nav-link.active {
+  background-color: var(--navy);
+  color: var(--neon-yellow) !important;
+  font-weight: 700;
+}
+
+/* Add padding to body to account for fixed navbar */
+/* body {
+  padding-top: 70px;
+} */
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .navbar {
+    padding: 0.75rem 0;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+
+  .navbar-nav .nav-link {
+    margin-left: 0;
+  }
+
+  body {
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+
+  body {
+    padding-top: 55px;
+  }
+}
+
+/* Link decorations */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
