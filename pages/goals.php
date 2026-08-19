@@ -46,7 +46,7 @@ function goalPercentage(array $goal): int
 include_once('../header.php');
 ?>
 
-<link rel="stylesheet" href="styles/goalsStyle.css">
+<link rel="stylesheet" href="styles/goalsStyle.css?<?php echo time(); ?>">
 
 <main class="dashboard-page">
     <div class="page-container">
@@ -208,4 +208,3 @@ form.addEventListener('submit', event => {
 });
 </script>
 
-<?php include_once('../footer.php'); ?>
