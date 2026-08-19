@@ -263,14 +263,6 @@ include_once('../header.php')
           </div>
         </div>
       </div>
-    </section>
-        <section class="cta" id="contact">
-        <div class="container-lg">
-            <h2>Ready to Transform?</h2>
-            <p>Join FitCore today and start your fitness journey with a free trial week</p>
-            <button class="btn-cta">Claim Your Free Trial</button>
-        </div>
-    </section>
 </main>
     <?php
 include_once('../footer.php')
