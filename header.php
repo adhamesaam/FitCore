@@ -27,10 +27,10 @@
             <a class="nav-link active" aria-current="page" href="home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">profile</a>
+            <a class="nav-link" href="profile.php">profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">goals</a>
+            <a class="nav-link" href="goals.php">goals</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="subscription.php">subscription</a>
