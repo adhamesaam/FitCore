@@ -1,34 +1,28 @@
 <?php 
 include_once('../header.php')
 ?>
-<link rel="stylesheet" href="styles/aboutStyle.css">
-    <main>
-        <!-- ==========================================
-             HERO SECTION
-             ========================================== -->
-        <section class="hero">
+<link rel="stylesheet" href="styles/aboutStyle.css?<?php echo time(); ?>">
+<main>
+        <section class="about-hero">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <h1>About <span class="highlight">FitCore</span></h1>
                         <p>Founded in 2018, FitCore has grown from a small personal training studio into a thriving fitness community dedicated to empowering individuals to reach their health and wellness goals. Learn the story behind our mission and values.</p>
-                        <div class="d-flex gap-3 flex-wrap">
+                        <!-- <div class="d-flex gap-3 flex-wrap">
                             <button class="btn btn-primary">Explore Our Story</button>
                             <button class="btn btn-outline-primary">Visit Us Today</button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-lg-6">
-                        <div style="background: rgba(204, 255, 0, 0.1); height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--color-accent);">
-                            <div style="text-align: center; color: var(--color-accent); font-size: 3rem; opacity: 0.5;">🏢</div>
+                        <div class="hero-image">
+                            <div class="hero-icon">🏢</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
  
-        <!-- ==========================================
-             ABOUT SECTION
-             ========================================== -->
         <section class="about-section">
             <div class="container">
                 <h2 class="section-title">How It All Started</h2>
@@ -40,7 +34,7 @@ include_once('../header.php')
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="about-card" style="border-left-color: var(--color-success);">
+                        <div class="about-card about-card-growth">
                             <h3>📈 Our Growth</h3>
                             <p>From humble beginnings with just 50 members, FitCore now serves over 5,000 active members across all fitness levels. Our expansion includes the opening of 3 additional locations, partnerships with corporate wellness programs, and the launch of our online training platform reaching members globally.</p>
                         </div>
@@ -49,9 +43,6 @@ include_once('../header.php')
             </div>
         </section>
  
-        <!-- ==========================================
-             CORE VALUES SECTION
-             ========================================== -->
         <section class="features-section">
             <div class="container">
                 <h2 class="section-title">Our Core Values</h2>
@@ -88,9 +79,6 @@ include_once('../header.php')
             </div>
         </section>
  
-        <!-- ==========================================
-             MILESTONES SECTION
-             ========================================== -->
         <section class="stats-section">
             <div class="container">
                 <div class="row">
@@ -122,9 +110,6 @@ include_once('../header.php')
             </div>
         </section>
  
-        <!-- ==========================================
-             LEADERSHIP TEAM SECTION
-             ========================================== -->
         <section class="team-section">
             <div class="container">
                 <h2 class="section-title">Leadership Team</h2>
@@ -173,9 +158,6 @@ include_once('../header.php')
             </div>
         </section>
  
-        <!-- ==========================================
-             TRANSFORMATION STORIES SECTION
-             ========================================== -->
         <section class="testimonials-section">
             <div class="container">
                 <h2 class="section-title">Transformation Stories</h2>
@@ -214,68 +196,62 @@ include_once('../header.php')
             </div>
         </section>
  
-        <!-- ==========================================
-             COMMUNITY IMPACT SECTION
-             ========================================== -->
-        <section style="background: var(--color-darker); padding: 60px 0;">
+        <section class="community-impact-section">
             <div class="container">
                 <h2 class="section-title">Our Community Impact</h2>
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <div style="background: var(--color-dark); padding: 30px; border-radius: 12px; border-left: 4px solid var(--color-accent);">
-                            <h4 style="color: var(--color-light); margin-bottom: 15px;">💚 Health Initiatives</h4>
-                            <p style="margin-bottom: 10px;">FitCore partners with local schools to provide free fitness education to students and families. We've reached over 2,000 young people with wellness programs.</p>
+                        <div class="community-impact-card">
+                            <h4 class="community-impact-heading">💚 Health Initiatives</h4>
+                            <p class="community-impact-copy">FitCore partners with local schools to provide free fitness education to students and families. We've reached over 2,000 young people with wellness programs.</p>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div style="background: var(--color-dark); padding: 30px; border-radius: 12px; border-left: 4px solid var(--color-success);">
-                            <h4 style="color: var(--color-light); margin-bottom: 15px;">🤝 Charity Programs</h4>
-                            <p style="margin-bottom: 10px;">Annual "Fit for a Cause" events raise funds for local health organizations. Members pay-what-you-can for specialized classes, donating 100% of proceeds.</p>
+                        <div class="community-impact-card community-impact-card-success">
+                            <h4 class="community-impact-heading">🤝 Charity Programs</h4>
+                            <p class="community-impact-copy">Annual "Fit for a Cause" events raise funds for local health organizations. Members pay-what-you-can for specialized classes, donating 100% of proceeds.</p>
                         </div>
                     </div>
                 </div>
                 <div class="row g-4 mt-4">
                     <div class="col-md-6">
-                        <div style="background: var(--color-dark); padding: 30px; border-radius: 12px; border-left: 4px solid var(--color-accent);">
-                            <h4 style="color: var(--color-light); margin-bottom: 15px;">👥 Accessibility Programs</h4>
-                            <p style="margin-bottom: 10px;">We offer subsidized memberships for seniors, students, and low-income individuals. Everyone deserves access to fitness regardless of financial status.</p>
+                        <div class="community-impact-card">
+                            <h4 class="community-impact-heading">👥 Accessibility Programs</h4>
+                            <p class="community-impact-copy">We offer subsidized memberships for seniors, students, and low-income individuals. Everyone deserves access to fitness regardless of financial status.</p>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div style="background: var(--color-dark); padding: 30px; border-radius: 12px; border-left: 4px solid var(--color-success);">
-                            <h4 style="color: var(--color-light); margin-bottom: 15px;">📚 Education & Certification</h4>
-                            <p style="margin-bottom: 10px;">FitCore Academy trains the next generation of fitness professionals. We've certified 150+ trainers who now work in the industry.</p>
+                        <div class="community-impact-card community-impact-card-success">
+                            <h4 class="community-impact-heading">📚 Education & Certification</h4>
+                            <p class="community-impact-copy">FitCore Academy trains the next generation of fitness professionals. We've certified 150+ trainers who now work in the industry.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
  
-        <!-- ==========================================
-             WHY FITCORE SECTION
-             ========================================== -->
-        <section style="background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-darker) 100%); padding: 60px 0;">
+        <section class="difference-section">
             <div class="container">
                 <h2 class="section-title">What Sets Us Apart</h2>
                 <div class="row g-4">
                     <div class="col-lg-6">
-                        <h4 style="color: var(--color-light); margin-bottom: 20px; font-size: 1.3rem;">🎯 Personalized Approach</h4>
-                        <p style="line-height: 1.8; margin-bottom: 20px;">Every member is unique. We don't believe in one-size-fits-all training. Our assessment process identifies your goals, limitations, and preferences to create a truly personalized experience.</p>
-                        <ul style="list-style: none; padding: 0; color: var(--color-primary);">
-                            <li style="margin-bottom: 12px;">✓ Comprehensive fitness assessment</li>
-                            <li style="margin-bottom: 12px;">✓ Custom training plans</li>
-                            <li style="margin-bottom: 12px;">✓ Regular progress tracking & adjustments</li>
-                            <li>✓ Nutrition & lifestyle coaching</li>
+                        <h4 class="difference-heading">🎯 Personalized Approach</h4>
+                        <p class="difference-copy">Every member is unique. We don't believe in one-size-fits-all training. Our assessment process identifies your goals, limitations, and preferences to create a truly personalized experience.</p>
+                        <ul class="difference-list">
+                            <li class="difference-list-item"> Comprehensive fitness assessment</li>
+                            <li class="difference-list-item"> Custom training plans</li>
+                            <li class="difference-list-item"> Regular progress tracking & adjustments</li>
+                            <li> Nutrition & lifestyle coaching</li>
                         </ul>
                     </div>
                     <div class="col-lg-6">
-                        <h4 style="color: var(--color-light); margin-bottom: 20px; font-size: 1.3rem;">🌟 Holistic Wellness</h4>
-                        <p style="line-height: 1.8; margin-bottom: 20px;">Fitness isn't just about lifting weights. We focus on your complete wellness including mental health, sleep, stress management, and nutrition—creating a balanced, sustainable approach.</p>
-                        <ul style="list-style: none; padding: 0; color: var(--color-primary);">
-                            <li style="margin-bottom: 12px;">✓ Group fitness classes</li>
-                            <li style="margin-bottom: 12px;">✓ Mental health & wellness workshops</li>
-                            <li style="margin-bottom: 12px;">✓ Sleep & recovery programs</li>
-                            <li>✓ Community support & accountability</li>
+                        <h4 class="difference-heading">🌟 Holistic Wellness</h4>
+                        <p class="difference-copy">Fitness isn't just about lifting weights. We focus on your complete wellness including mental health, sleep, stress management, and nutrition—creating a balanced, sustainable approach.</p>
+                        <ul class="difference-list">
+                            <li class="difference-list-item"> Group fitness classes</li>
+                            <li class="difference-list-item"> Mental health & wellness workshops</li>
+                            <li class="difference-list-item"> Sleep & recovery programs</li>
+                            <li> Community support & accountability</li>
                         </ul>
                     </div>
                 </div>
