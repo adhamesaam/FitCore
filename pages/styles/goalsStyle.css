@@ -8,11 +8,6 @@
   --border: rgba(255, 255, 255, 0.09);
 }
 
-/* =========================================================
-   PAGE LAYOUT
-   The shared PHP header/footer remain in normal document flow.
-   .dashboard-page is the main content area between them.
-   ========================================================= */
 html,
 body {
   min-height: 100%;
