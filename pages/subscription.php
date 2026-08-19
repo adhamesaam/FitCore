@@ -1,8 +1,9 @@
 <?php 
 include_once('../header.php')
 ?>
+<link rel="stylesheet" href="styles/subscription.css">    
 
-    <!-- Hero Section -->
+<!-- Hero Section -->
     <section class="py-5 text-center bg-light">
         <div class="container">
             <h1 class="display-4 fw-bold mb-3">Run multiple gyms from one dashboard</h1>
