@@ -1,7 +1,7 @@
 <?php 
 include_once('../header.php')
 ?>
-<link rel="stylesheet" href="styles/subscription.css">    
+<link rel="stylesheet" href="styles/managerSub.css">    
 
     <section class="hero" id="home">
         <div class="container">

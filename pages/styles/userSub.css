@@ -159,6 +159,7 @@ table {
 .comparison-table td {
   padding: 1.25rem !important;
   border-bottom: 1px solid var(--navy);
+  color: var(--slate-light) !important;
 }
 
 .comparison-table tbody tr:hover {
