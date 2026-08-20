@@ -151,30 +151,6 @@
             </div>
 
             <div class="form-group">
-                <label for="age">Age</label>
-                <input type="number" id="age" name="age" min="13" max="120" required>
-            </div>
-
-            <div class="form-group">
-                <label for="height">Height (cm)</label>
-                <input type="number" id="height" name="height" min="50" max="300" required>
-            </div>
-
-            <div class="form-group">
-                <label>Gender</label>
-                <div class="radio-group">
-                    <div class="radio-option">
-                        <input type="radio" id="male" name="gender" value="Male" required>
-                        <label for="male">Male</label>
-                    </div>
-                    <div class="radio-option">
-                        <input type="radio" id="female" name="gender" value="Female" required>
-                        <label for="female">Female</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
@@ -184,7 +160,7 @@
                 <input type="password" id="confirmPassword" name="confirmPassword" required>
             </div>
 
-            <button type="submit">Create Account</button>
+            <button type="submit" name="createAccountBtn">Create Account</button>
             <div class="login-link">
                 Already have an account? <a href="login.php">Sign In</a>
             </div>
