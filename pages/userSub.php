@@ -1,7 +1,7 @@
 <?php
 include_once('../header.php');
 ?>
-
+<link rel="stylesheet" href="styles/userSub.css">
     <!-- Pricing Section -->
     <section class="pricing" id="pricing">
       <div class="container-lg">
