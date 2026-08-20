@@ -3,7 +3,6 @@ include_once('../header.php')
 ?>
 <link rel="stylesheet" href="styles/subscription.css">    
 
-    <!-- ===== HERO SECTION ===== -->
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
@@ -13,7 +12,6 @@ include_once('../header.php')
         </div>
     </section>
 
-    <!-- ===== PRICING SECTION ===== -->
     <section class="pricing-section" id="pricing">
         <div class="container">
             <div class="pricing-header">
@@ -22,7 +20,6 @@ include_once('../header.php')
             </div>
 
             <div class="pricing-cards">
-                <!-- STARTER PLAN -->
                 <div class="pricing-card">
                     <div class="card-plan-name">Starter</div>
                     <div class="card-plan-desc">Single-location gyms</div>
@@ -39,7 +36,6 @@ include_once('../header.php')
                     </ul>
                 </div>
 
-                <!-- PROFESSIONAL PLAN (FEATURED) -->
                 <div class="pricing-card featured">
                     <div class="card-plan-name">Professional</div>
                     <div class="card-plan-desc">Growing chains & franchises</div>
@@ -57,7 +53,6 @@ include_once('../header.php')
                     </ul>
                 </div>
 
-                <!-- ENTERPRISE PLAN -->
                 <div class="pricing-card">
                     <div class="card-plan-name">Enterprise</div>
                     <div class="card-plan-desc">Large-scale operations</div>
@@ -77,7 +72,6 @@ include_once('../header.php')
                 </div>
             </div>
 
-            <!-- SOCIAL PROOF -->
             <div class="social-proof">
                 <div class="social-proof-title">Trusted by fitness professionals worldwide</div>
                 <div class="social-proof-stats">
@@ -98,7 +92,6 @@ include_once('../header.php')
         </div>
     </section>
 
-    <!-- ===== FEATURES SECTION ===== -->
     <section class="features-section" id="features">
         <div class="container">
             <div class="features-header">
@@ -140,7 +133,6 @@ include_once('../header.php')
         </div>
     </section>
 
-    <!-- ===== COMPARISON TABLE ===== -->
     <section class="comparison-section">
         <div class="container">
             <div class="comparison-header">

@@ -57,6 +57,112 @@ include_once('../header.php');
         </div>
       </div>
     </section>
+        <section class="comparison-section">
+        <div class="container">
+            <div class="comparison-header">
+                <h2>Feature Comparison</h2>
+            </div>
+
+            <div class="comparison-table-wrapper ">
+                <table class="comparison-table table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Starter</th>
+                            <th>Professional</th>
+                            <th>Enterprise</th>
+                        </tr>
+                    </thead>
+                                        <tbody>
+                        <tr>
+                            <td><strong>Gym Access</strong></td>
+                            <td>Business Hours</td>
+                            <td>24/7 Access</td>
+                            <td>24/7 Access</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Equipment Access</strong></td>
+                            <td><span class="check-icon">✓</span> Basic</td>
+                            <td><span class="check-icon">✓</span> Full Access</td>
+                            <td><span class="check-icon">✓</span> Full Access</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Mobile App</strong></td>
+                            <td><span class="check-icon">✓</span></td>
+                            <td><span class="check-icon">✓</span></td>
+                            <td><span class="check-icon">✓</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Fitness Assessment</strong></td>
+                            <td>1 Assessment</td>
+                            <td>Regular Assessments</td>
+                            <td>Advanced Assessments</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Group Classes</strong></td>
+                            <td><span class="close-icon">✗</span></td>
+                            <td><span class="check-icon">✓</span> All Classes</td>
+                            <td><span class="check-icon">✓</span> All Classes</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Personal Trainer</strong></td>
+                            <td><span class="close-icon">✗</span></td>
+                            <td>Trainer Sessions</td>
+                            <td>Dedicated Trainer</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Nutrition Guidance</strong></td>
+                            <td><span class="close-icon">✗</span></td>
+                            <td><span class="check-icon">✓</span></td>
+                            <td><span class="check-icon">✓</span> Custom Plan</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Custom Meal Planning</strong></td>
+                            <td><span class="close-icon">✗</span></td>
+                            <td><span class="close-icon">✗</span></td>
+                            <td><span class="check-icon">✓</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Recovery Services</strong></td>
+                            <td><span class="close-icon">✗</span></td>
+                            <td><span class="close-icon">✗</span></td>
+                            <td><span class="check-icon">✓</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>VIP Lounge Access</strong></td>
+                            <td><span class="close-icon">✗</span></td>
+                            <td><span class="close-icon">✗</span></td>
+                            <td><span class="check-icon">✓</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Customer Support</strong></td>
+                            <td>Standard</td>
+                            <td>Priority Support</td>
+                            <td>VIP Support</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Monthly Price</strong></td>
+                            <td>$29 / month</td>
+                            <td>$59 / month</td>
+                            <td>$99 / month</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
 <?php 
 include_once ('../footer.php');
 ?>

@@ -220,7 +220,7 @@ main {
 }
 .testimonials {
   padding: 80px 0;
-  background-color: var(--secondary-dark);
+  background-color: var(--primary-dark);
 }
 .testimonial-card {
   background-color: var(--navy);
