@@ -12,6 +12,8 @@ if (!isset($_SESSION["id"])) {
 }
 
 $isadmin = ($_SESSION["role"] == "admin");
+$isSubscribed = is_user_subscribed($_SESSION["id"]);
+$canSeeAllVideos = $isadmin || $isSubscribed;
 $muscleGroups = ["Chest", "Back", "Legs", "Arms", "Shoulders", "Abs"];
 
 function cleaninput($data)
@@ -91,7 +93,7 @@ if ($isadmin && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['deleteVide
     exit;
 }
 
-$result = get_all_training_videos();
+$result = $canSeeAllVideos ? get_all_training_videos() : get_default_training_videos();
 $videos = $result["status"] ? $result["data"] : [];
 
 $grouped = [];
@@ -126,6 +128,12 @@ foreach ($videos as $video) {
                     <li><?php echo htmlspecialchars($val); ?></li>
                 <?php } ?>
             </ul>
+        </div>
+    <?php } ?>
+
+    <?php if (!$canSeeAllVideos) { ?>
+        <div class="tv-alert tv-alert-info">
+            You're viewing our free video library. Subscribe to a gym branch to unlock the full library.
         </div>
     <?php } ?>
 
