@@ -1,9 +1,5 @@
 <?php
 session_start();
-if (isset($_SESSION["id"])) {
-    header("location:profile.php");
-    exit;
-}
 
 $error = $_SESSION['signup_errors'] ?? [];
 $old = $_SESSION['signup_old'] ?? ['name' => '', 'email' => '', 'role' => 'user', 'gender' => ''];

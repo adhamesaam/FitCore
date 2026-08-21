@@ -1,12 +1,12 @@
 <?php
-// Start session if not already started
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-}
-
-// Check user role and login status from session
-$userRole = isset($_SESSION['role']) ? $_SESSION['role'] : null;
-$isLoggedIn = isset($_SESSION["id"]) ? true : false;
+  // Start session if not already started
+  if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+  }
+  
+  // Check user role and login status from session
+  $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : null;
+  $isLoggedIn = isset($_SESSION["id"]) ? true : false;
 ?>
 <!doctype html>
 <html lang="en">
@@ -33,9 +33,9 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
       <!-- Desktop Navigation (visible on lg and up) -->
       <ul class="navbar-nav d-none d-lg-flex flex-row justify-content-center flex-grow-1 mb-0">
         <?php if (!$isLoggedIn): ?>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="home.php">Home</a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="home.php">Home</a>
+        </li>
         <?php endif; ?>
         <?php if ($isLoggedIn && $userRole === 'user'): ?>
         <li class="nav-item">
@@ -52,9 +52,9 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
         </li>
         <?php endif; ?>
         <?php if (!$isLoggedIn): ?>
-          <li class="nav-item">
-            <a class="nav-link" href="about.php">About</a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.php">About</a>
+        </li>
         <?php endif; ?>
       </ul>
 
@@ -79,16 +79,25 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <?php if (!$isLoggedIn): ?>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="home.php">Home</a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="home.php">Home</a>
+            </li>
             <?php endif; ?>
             <?php if ($isLoggedIn && $userRole === 'user'): ?>
+            <li class="nav-item">
+              <a class="nav-link" href="profile.php">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="goals.php">Goals</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gym-location.php">Gym Location</a>
+            </li>
             <?php endif; ?>
             <?php if (!$isLoggedIn): ?>
-              <li class="nav-item">
-                <a class="nav-link" href="about.php">About</a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.php">About</a>
+            </li>
             <?php endif; ?>
             <li class="nav-item">
               <?php if ($isLoggedIn): ?>
