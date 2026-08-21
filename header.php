@@ -45,10 +45,10 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
           <a class="nav-link" href="goals.php">Goals</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="gymLocation.php">Gym Location</a>
+          <a class="nav-link" href="gymloc.php">Gym Location</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="trainingVideos.php">Training videos</a>
+          <a class="nav-link" href="trainingvideos.php">Training videos</a>
         </li>
         <?php endif; ?>
 
