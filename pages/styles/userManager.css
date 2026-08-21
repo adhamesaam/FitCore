@@ -1,0 +1,176 @@
+/* ==========================================
+   FitCore - User Manager
+   ========================================== */
+
+:root {
+  --primary-dark: #12141c;
+  --secondary-dark: #1e2230;
+  --navy: #292e42;
+  --slate-light: #94a3b8;
+  --neon-yellow: #ccff00;
+  --white: #ffffff;
+  --red: #ef4444;
+}
+
+/* Page */
+
+body {
+  background-color: var(--primary-dark);
+  color: var(--white);
+}
+
+main {
+  min-height: calc(100vh - 80px);
+  padding: 80px 20px;
+  background-color: var(--primary-dark);
+}
+
+/* Card */
+
+main .card {
+  background-color: var(--secondary-dark);
+  border: none;
+  border-radius: 15px;
+}
+
+main .card-body {
+  padding: 30px !important;
+}
+
+/* Search */
+
+main .input-group {
+  background-color: var(--navy);
+  border-radius: 8px;
+}
+
+main .input-group-text {
+  background-color: var(--navy) !important;
+  color: var(--slate-light) !important;
+  border: none;
+}
+
+#searchBar {
+  background-color: var(--navy);
+  color: var(--white);
+  border: none;
+}
+
+#searchBar::placeholder {
+  color: var(--slate-light);
+}
+
+#searchBar:focus {
+  background-color: var(--navy);
+  color: var(--white);
+  box-shadow: none;
+}
+
+/* Add User */
+
+.btn-primary {
+  background-color: var(--neon-yellow) !important;
+  border-color: var(--neon-yellow) !important;
+  color: var(--primary-dark) !important;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: var(--white) !important;
+  border-color: var(--white) !important;
+}
+
+/* Table */
+
+table {
+  --bs-table-bg: transparent !important;
+  background-color: var(--dark-secondary);
+}
+
+#userTable {
+  color: var(--white);
+}
+
+#userTable thead {
+  background-color: var(--navy);
+}
+
+#userTable thead th {
+  background-color: var(--navy);
+  color: var(--slate-light);
+  border: none;
+  padding: 15px;
+}
+
+#userTable tbody tr {
+  background-color: var(--secondary-dark);
+}
+
+#userTable tbody tr:hover {
+  background-color: var(--navy);
+}
+
+#userTable tbody td,
+#userTable tbody th {
+  color: var(--white);
+  border-color: rgba(148, 163, 184, 0.1);
+  padding: 15px;
+}
+
+/* ID */
+
+#userTable tbody th {
+  color: var(--neon-yellow);
+}
+
+/* Email */
+
+#userTable tbody td:nth-child(3) {
+  color: var(--slate-light);
+}
+
+/* Role */
+
+#userTable tbody td:nth-child(4) {
+  color: var(--neon-yellow);
+}
+
+/* Delete */
+
+.btn-danger {
+  background-color: transparent;
+  border-color: var(--red);
+}
+
+.btn-danger:hover {
+  background-color: var(--red);
+}
+
+/* Edit */
+
+.btn-warning {
+  background-color: transparent;
+  border-color: var(--neon-yellow);
+  color: var(--neon-yellow);
+}
+
+.btn-warning:hover {
+  background-color: var(--neon-yellow);
+  color: var(--primary-dark);
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  main {
+    padding: 30px 15px;
+  }
+
+  main .card-body {
+    padding: 20px !important;
+  }
+
+  #userTable {
+    min-width: 650px;
+  }
+}
