@@ -27,49 +27,48 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
 
 <body>
   <nav class="navbar bg-body-tertiary fixed-top">
-    <div class="container-fluid">
+    <div class="container-fluid d-flex align-items-center">
       <a class="navbar-brand" href="#">FitCore</a>
 
       <!-- Desktop Navigation (visible on lg and up) -->
-      <ul class="navbar-nav d-none d-lg-flex flex-row justify-content-end flex-grow-1">
+      <ul class="navbar-nav d-none d-lg-flex flex-row justify-content-center flex-grow-1 mb-0">
         <?php if (!$isLoggedIn): ?>
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="home.php">Home</a>
           </li>
         <?php endif; ?>
         <?php if ($isLoggedIn && $userRole === 'user'): ?>
-          <li class="nav-item">
-            <a class="nav-link" href="profile.php">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="goals.php">Goals</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="gymloc.php">Gym Location</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="trainingvideos.php">Training videos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="settings.php">Settings</a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.php">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="goals.php">Goals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="gymLocation.php">Gym Location</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="trainingVideos.php">Training videos</a>
+        </li>
         <?php endif; ?>
         <?php if (!$isLoggedIn): ?>
           <li class="nav-item">
             <a class="nav-link" href="about.php">About</a>
           </li>
         <?php endif; ?>
-        <li class="nav-item">
-          <?php if ($isLoggedIn): ?>
-            <a class="nav-link" href="logout.php">Logout</a>
-          <?php else: ?>
-            <a class="nav-link" href="login.php">Login</a>
-          <?php endif; ?>
-        </li>
       </ul>
 
+      <!-- Login / Logout - always pinned to the right on desktop -->
+      <div class="d-none d-lg-block">
+        <?php if ($isLoggedIn): ?>
+          <button class="btn btn-outline-danger" onclick="window.location.href='logout.php'">Logout</button>
+        <?php else: ?>
+          <a class="nav-link" href="login.php">Login</a>
+        <?php endif; ?>
+      </div>
+
       <!-- Mobile Navigation (hamburger menu) -->
-      <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <button class="navbar-toggler d-lg-none ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -85,22 +84,7 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
               </li>
             <?php endif; ?>
             <?php if ($isLoggedIn && $userRole === 'user'): ?>
-              <li class="nav-item">
-                <a class="nav-link" href="profile.php">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="goals.php">Goals</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="gym-location.php">Gym Location</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="settings.php">Settings</a>
-              </li>
             <?php endif; ?>
-            <li class="nav-item">
-              <a class="nav-link" href="subscription.php">Subscription</a>
-            </li>
             <?php if (!$isLoggedIn): ?>
               <li class="nav-item">
                 <a class="nav-link" href="about.php">About</a>
