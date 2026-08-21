@@ -1,210 +1,298 @@
 <?php
-/*
- * Backend-ready dashboard data.
- * Replace these temporary values with database queries when your backend is ready.
- */
-$userName = 'Ahmed';
-$streakDays = 14;
-$bestStreak = 21;
-
-$weekDays = [
-    ['label' => 'M', 'completed' => true],
-    ['label' => 'T', 'completed' => true],
-    ['label' => 'W', 'completed' => true],
-    ['label' => 'T', 'completed' => true],
-    ['label' => 'F', 'completed' => true],
-    ['label' => 'S', 'completed' => true],
-    ['label' => 'S', 'completed' => false],
-];
-
-$todayWorkout = [
-    'name' => 'Chest & Triceps',
-    'exercises' => 6,
-    'duration' => 45,
-    'level' => 'Intermediate',
-    'image' => 'images/cross_fit_image.jpg'
-];
-
-$goals = [
-    ['name' => 'Lose 10 KG', 'current' => 7, 'target' => 10, 'unit' => 'KG', 'deadline' => 'Dec 20, 2026', 'icon' => 'fa-weight-scale'],
-    ['name' => 'Bench Press 100 KG', 'current' => 50, 'target' => 100, 'unit' => 'KG', 'deadline' => 'Jan 15, 2027', 'icon' => 'fa-dumbbell']
-];
-
-$recentWorkouts = [
-    ['name' => 'Chest & Triceps', 'exercises' => 6, 'duration' => 45, 'date' => 'Today', 'icon' => 'fa-dumbbell', 'today' => true],
-    ['name' => 'Legs', 'exercises' => 7, 'duration' => 50, 'date' => 'Yesterday', 'icon' => 'fa-person-running', 'today' => false],
-    ['name' => 'Back & Biceps', 'exercises' => 8, 'duration' => 55, 'date' => 'Aug 16, 2026', 'icon' => 'fa-child-reaching', 'today' => false]
-];
-
-function goalPercentage(array $goal): int
-{
-    if ((float)$goal['target'] <= 0) return 0;
-    return min(100, max(0, (int)round(($goal['current'] / $goal['target']) * 100)));
-}
-
-/* Your existing FitCore header is used here instead of a dashboard sidebar. */
 include_once('../header.php');
+
+if (!isset($_SESSION['id'])) {
+  header('Location: login.php');
+  exit();
+}
 ?>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="styles/goalsStyle.css">
 
-<link rel="stylesheet" href="styles/goalsStyle.css?<?php echo time(); ?>">
+<main>
 
-<main class="dashboard-page">
-    <div class="page-container">
-        <section class="welcome">
-            <h1>Good evening, <?= htmlspecialchars($userName) ?> <span>👋</span></h1>
-            <p>Let’s keep pushing your limits today.</p>
-        </section>
-
-        <section class="top-grid">
-            <article class="dashboard-card streak-card">
-                <h2>YOUR STREAK</h2>
-                <div class="streak-value">
-                    <i class="fa-solid fa-fire-flame-curved"></i>
-                    <strong><?= $streakDays ?></strong>
-                    <span>DAYS</span>
-                </div>
-                <p class="muted">Best streak: <?= $bestStreak ?> days</p>
-
-                <div class="week-streak" aria-label="Weekly workout streak">
-                    <?php foreach ($weekDays as $day): ?>
-                        <div>
-                            <span><?= htmlspecialchars($day['label']) ?></span>
-                            <b class="<?= $day['completed'] ? '' : 'empty' ?>"><?= $day['completed'] ? '✓' : '' ?></b>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </article>
-
-            <article class="dashboard-card workout-card" id="workout">
-                <div class="workout-copy">
-                    <h2>TODAY'S WORKOUT</h2>
-                    <div class="workout-title-row">
-                        <div class="workout-icon"><i class="fa-solid fa-dumbbell"></i></div>
-                        <div>
-                            <h3><?= htmlspecialchars($todayWorkout['name']) ?></h3>
-                            <p><?= (int)$todayWorkout['exercises'] ?> exercises <span>•</span> <?= (int)$todayWorkout['duration'] ?> min <span>•</span> <?= htmlspecialchars($todayWorkout['level']) ?></p>
-                        </div>
-                    </div>
-                    <a class="primary-button" href="workout.php">START WORKOUT <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-                <div class="workout-image" style="background-image: linear-gradient(90deg, #111517 0%, transparent 42%), url('<?= htmlspecialchars($todayWorkout['image']) ?>');"></div>
-            </article>
-        </section>
-
-        <section class="bottom-grid">
-            <article class="dashboard-card goals-card" id="goals">
-                <div class="card-heading">
-                    <h2>MY GOALS</h2>
-                    <a href="goals.php#goals">View all</a>
-                </div>
-
-                <div class="goal-list">
-                    <?php foreach ($goals as $goal): $percentage = goalPercentage($goal); ?>
-                        <div class="goal-row">
-                            <div class="goal-icon"><i class="fa-solid <?= htmlspecialchars($goal['icon']) ?>"></i></div>
-                            <div class="goal-main">
-                                <div class="goal-title-line">
-                                    <h3><?= htmlspecialchars($goal['name']) ?></h3>
-                                    <strong><?= $percentage ?>%</strong>
-                                </div>
-                                <div class="progress"><span style="width: <?= $percentage ?>%"></span></div>
-                                <div class="goal-meta">
-                                    <span><?= htmlspecialchars($goal['current']) ?> / <?= htmlspecialchars($goal['target']) ?> <?= htmlspecialchars($goal['unit']) ?></span>
-                                    <span><?= htmlspecialchars($goal['deadline']) ?></span>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-
-                <button class="outline-button" id="addGoalButton" type="button">
-                    <i class="fa-solid fa-plus"></i> ADD NEW GOAL
-                </button>
-            </article>
-
-            <article class="dashboard-card recent-card" id="history">
-                <div class="card-heading">
-                    <h2>RECENT WORKOUTS</h2>
-                    <a href="history.php">View all</a>
-                </div>
-
-                <div class="recent-list">
-                    <?php foreach ($recentWorkouts as $workout): ?>
-                        <a class="recent-row" href="workout.php">
-                            <div class="recent-icon"><i class="fa-solid <?= htmlspecialchars($workout['icon']) ?>"></i></div>
-                            <div class="recent-copy">
-                                <h3><?= htmlspecialchars($workout['name']) ?></h3>
-                                <p><?= (int)$workout['exercises'] ?> exercises <span>•</span> <?= (int)$workout['duration'] ?> min</p>
-                            </div>
-                            <span class="recent-date <?= $workout['today'] ? 'today' : '' ?>"><?= htmlspecialchars($workout['date']) ?></span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </a>
-                    <?php endforeach; ?>
-                </div>
-
-                <a class="outline-button history-button" href="history.php">
-                    <i class="fa-regular fa-calendar"></i> VIEW FULL HISTORY
-                </a>
-            </article>
-        </section>
+  <!-- Page Header -->
+  <section class="goals-hero">
+    <div class="container-lg">
+      <h1>Your <span class="highlight">Goals</span></h1>
+      <p>Manage the daily calorie target we calculated at signup, and add extra goals to stay on track.</p>
     </div>
+  </section>
+
+  <!-- Goals Content -->
+  <section class="goals-section">
+    <div class="container-lg">
+
+      <!-- Primary daily calorie target -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <div class="target-card d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+              <div class="label">Daily Calorie Target</div>
+              <div id="targetDisplayWrap">
+                <span class="target-value-display" id="targetValueDisplay">2200</span>
+                <span class="unit-label">kcal / day</span>
+              </div>
+              <div id="targetEditWrap" class="d-none align-items-center">
+                <input type="number" class="target-value-input" id="targetValueInput" value="2200" min="0">
+                <span class="unit-label">kcal / day</span>
+              </div>
+            </div>
+            <div>
+              <button class="btn-secondary-custom" id="editTargetBtn">
+                <i class="fas fa-pen me-1"></i> Edit
+              </button>
+              <button class="btn-primary-custom d-none" id="saveTargetBtn">
+                <i class="fas fa-check me-1"></i> Save
+              </button>
+              <button class="btn-secondary-custom d-none" id="cancelTargetBtn">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Goals list header -->
+      <div class="row mb-4">
+        <div class="col-12 d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <h2 class="section-title">Your <span class="highlight">Goals</span></h2>
+          <button class="btn-primary-custom" data-bs-toggle="modal" data-bs-target="#addGoalModal">
+            <i class="fas fa-plus me-1"></i> Add Goal
+          </button>
+        </div>
+      </div>
+
+      <!-- Goals grid -->
+      <div class="row g-4" id="goalsGrid">
+        <!-- goal cards injected by JS -->
+      </div>
+
+      <!-- Empty state (shown/hidden by JS) -->
+      <div class="empty-state d-none" id="emptyState">
+        <i class="fas fa-bullseye fa-2x mb-3" style="color: var(--neon-yellow);"></i>
+        <p class="mb-0">No goals yet. Click "Add Goal" to create your first one.</p>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 
-<!-- This form is ready for a PHP POST handler/database insert later. -->
-<div class="modal" id="goalModal" aria-hidden="true">
-    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="goalModalTitle">
-        <button class="modal-close" id="closeGoalModal" type="button" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-        <h2 id="goalModalTitle">Add New Goal</h2>
-        <p>Enter your goal details.</p>
-
-        <form id="goalForm" method="POST" action="">
-            <!-- Backend fields: $_POST['goal_name'], $_POST['target_value'], $_POST['deadline'] -->
-            <label>Goal name
-                <input type="text" name="goal_name" id="goalName" placeholder="e.g. Lose 5 KG" required>
-            </label>
-            <label>Target
-                <input type="text" name="target_value" id="goalTarget" placeholder="e.g. 5 KG" required>
-            </label>
-            <label>Deadline
-                <input type="date" name="deadline" id="goalDate" required>
-            </label>
-            <button class="primary-button" type="submit">SAVE GOAL <i class="fa-solid fa-check"></i></button>
+<!-- Add / Edit Goal Modal -->
+<div class="modal fade" id="addGoalModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content fitcore-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="goalModalTitle">Add Goal</h5>
+        <button type="button" class="btn-close btn-close-custom" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="goalForm">
+          <input type="hidden" id="goalId">
+          <div class="mb-3">
+            <label class="form-label" for="goalName">Goal Name</label>
+            <input type="text" class="form-control" id="goalName" placeholder="e.g. Protein Intake" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="goalType">Goal Type</label>
+            <select class="form-select" id="goalType">
+              <option value="Calories">Calories</option>
+              <option value="Protein">Protein</option>
+              <option value="Weight">Weight</option>
+              <option value="Water">Water</option>
+              <option value="Custom">Custom</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="goalTarget">Target Value</label>
+            <input type="number" class="form-control" id="goalTarget" placeholder="e.g. 150" min="0" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="goalUnit">Unit</label>
+            <input type="text" class="form-control" id="goalUnit" placeholder="e.g. g, kcal, kg, L">
+          </div>
         </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary-custom" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn-primary-custom" id="saveGoalBtn">Save Goal</button>
+      </div>
     </div>
+  </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-const modal = document.getElementById('goalModal');
-const openButton = document.getElementById('addGoalButton');
-const closeButton = document.getElementById('closeGoalModal');
-const form = document.getElementById('goalForm');
+/*
+  Simple client-side CRUD for goals, persisted in localStorage so the page
+  keeps working even without a backend endpoint wired up yet.
+  Replace the storage calls below with real API calls once the FitCore
+  backend exposes goal endpoints.
+*/
+const STORAGE_KEY = 'fitcore_goals';
+const TARGET_KEY = 'fitcore_daily_target';
 
-function toggleGoalModal(open) {
-    modal.classList.toggle('show', open);
-    modal.setAttribute('aria-hidden', String(!open));
-    if (open) document.getElementById('goalName').focus();
+const goalsGrid = document.getElementById('goalsGrid');
+const emptyState = document.getElementById('emptyState');
+const goalModalEl = document.getElementById('addGoalModal');
+const goalModal = new bootstrap.Modal(goalModalEl);
+const goalModalTitle = document.getElementById('goalModalTitle');
+const goalForm = document.getElementById('goalForm');
+
+function loadGoals() {
+  return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 }
 
-openButton.addEventListener('click', () => toggleGoalModal(true));
-closeButton.addEventListener('click', () => toggleGoalModal(false));
-modal.addEventListener('click', event => {
-    if (event.target === modal) toggleGoalModal(false);
-});
-document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') toggleGoalModal(false);
+function saveGoals(goals) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(goals));
+}
+
+function renderGoals() {
+  const goals = loadGoals();
+  goalsGrid.innerHTML = '';
+
+  if (goals.length === 0) {
+    emptyState.classList.remove('d-none');
+    return;
+  }
+  emptyState.classList.add('d-none');
+
+  goals.forEach(goal => {
+    const col = document.createElement('div');
+    col.className = 'col-md-6 col-lg-4';
+    col.innerHTML = `
+      <div class="goal-card">
+        <span class="goal-type">${goal.type}</span>
+        <h4>${goal.name}</h4>
+        <div class="goal-value">${goal.target} ${goal.unit || ''}</div>
+        <div class="goal-actions">
+          <button class="btn-secondary-custom edit-goal-btn" data-id="${goal.id}">
+            <i class="fas fa-pen me-1"></i> Edit
+          </button>
+          <button class="btn-danger-custom delete-goal-btn" data-id="${goal.id}">
+            <i class="fas fa-trash me-1"></i> Delete
+          </button>
+        </div>
+      </div>
+    `;
+    goalsGrid.appendChild(col);
+  });
+
+  document.querySelectorAll('.edit-goal-btn').forEach(btn => {
+    btn.addEventListener('click', () => openEditModal(btn.dataset.id));
+  });
+  document.querySelectorAll('.delete-goal-btn').forEach(btn => {
+    btn.addEventListener('click', () => deleteGoal(btn.dataset.id));
+  });
+}
+
+function openAddModal() {
+  goalModalTitle.textContent = 'Add Goal';
+  goalForm.reset();
+  document.getElementById('goalId').value = '';
+}
+
+function openEditModal(id) {
+  const goals = loadGoals();
+  const goal = goals.find(g => g.id === id);
+  if (!goal) return;
+
+  goalModalTitle.textContent = 'Edit Goal';
+  document.getElementById('goalId').value = goal.id;
+  document.getElementById('goalName').value = goal.name;
+  document.getElementById('goalType').value = goal.type;
+  document.getElementById('goalTarget').value = goal.target;
+  document.getElementById('goalUnit').value = goal.unit || '';
+  goalModal.show();
+}
+
+function deleteGoal(id) {
+  if (!confirm('Delete this goal?')) return;
+  const goals = loadGoals().filter(g => g.id !== id);
+  saveGoals(goals);
+  renderGoals();
+}
+
+document.getElementById('saveGoalBtn').addEventListener('click', () => {
+  if (!goalForm.reportValidity()) return;
+
+  const id = document.getElementById('goalId').value;
+  const name = document.getElementById('goalName').value.trim();
+  const type = document.getElementById('goalType').value;
+  const target = document.getElementById('goalTarget').value;
+  const unit = document.getElementById('goalUnit').value.trim();
+
+  let goals = loadGoals();
+
+  if (id) {
+    goals = goals.map(g => g.id === id ? { ...g, name, type, target, unit } : g);
+  } else {
+    goals.push({ id: Date.now().toString(), name, type, target, unit });
+  }
+
+  saveGoals(goals);
+  renderGoals();
+  goalModal.hide();
 });
 
-/*
- * BACKEND HOOK:
- * Remove this submit listener when you are ready for PHP to process the form.
- * The form already sends:
- *   goal_name
- *   target_value
- *   deadline
- */
-form.addEventListener('submit', event => {
-    event.preventDefault();
-    toggleGoalModal(false);
+goalModalEl.addEventListener('show.bs.modal', (e) => {
+  if (!document.getElementById('goalId').value) {
+    // triggered by the "Add Goal" button rather than an edit click
+  }
 });
+
+document.querySelector('[data-bs-target="#addGoalModal"]').addEventListener('click', openAddModal);
+
+/* ---------- Daily calorie target edit ---------- */
+const targetDisplayWrap = document.getElementById('targetDisplayWrap');
+const targetEditWrap = document.getElementById('targetEditWrap');
+const targetValueDisplay = document.getElementById('targetValueDisplay');
+const targetValueInput = document.getElementById('targetValueInput');
+const editTargetBtn = document.getElementById('editTargetBtn');
+const saveTargetBtn = document.getElementById('saveTargetBtn');
+const cancelTargetBtn = document.getElementById('cancelTargetBtn');
+
+function loadTarget() {
+  const stored = localStorage.getItem(TARGET_KEY);
+  return stored ? stored : targetValueDisplay.textContent;
+}
+
+function initTarget() {
+  const value = loadTarget();
+  targetValueDisplay.textContent = value;
+  targetValueInput.value = value;
+}
+
+function toggleTargetEdit(isEditing) {
+  targetDisplayWrap.classList.toggle('d-none', isEditing);
+  targetEditWrap.classList.toggle('d-none', !isEditing);
+  targetEditWrap.classList.toggle('d-flex', isEditing);
+  editTargetBtn.classList.toggle('d-none', isEditing);
+  saveTargetBtn.classList.toggle('d-none', !isEditing);
+  cancelTargetBtn.classList.toggle('d-none', !isEditing);
+}
+
+editTargetBtn.addEventListener('click', () => {
+  targetValueInput.value = targetValueDisplay.textContent;
+  toggleTargetEdit(true);
+  targetValueInput.focus();
+});
+
+cancelTargetBtn.addEventListener('click', () => {
+  toggleTargetEdit(false);
+});
+
+saveTargetBtn.addEventListener('click', () => {
+  const newValue = targetValueInput.value;
+  if (newValue === '' || Number(newValue) < 0) return;
+  targetValueDisplay.textContent = newValue;
+  localStorage.setItem(TARGET_KEY, newValue);
+  toggleTargetEdit(false);
+});
+
+/* ---------- Init ---------- */
+initTarget();
+renderGoals();
 </script>
-
