@@ -51,6 +51,25 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
           <a class="nav-link" href="trainingVideos.php">Training videos</a>
         </li>
         <?php endif; ?>
+
+        <?php if ($isLoggedIn && $userRole === 'admin'): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.php">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="userManager.php">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="managerSub.php">Subscription</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="trainingvideos.php">Training videos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="supplements.php">Supplements</a>
+        </li>
+        <?php endif; ?>
+
         <?php if (!$isLoggedIn): ?>
           <li class="nav-item">
             <a class="nav-link" href="about.php">About</a>
