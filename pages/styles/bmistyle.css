@@ -1,0 +1,323 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #000;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+/* BMI Container */
+
+.bmi-container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main Card */
+
+.form-card {
+    width: 720px;
+    max-width: 100%;
+
+    background: #0d1425;
+
+    border: 1px solid rgba(224, 255, 0, 0.25);
+
+    border-radius: 15px;
+
+    padding: 48px;
+
+    color: #e0e7ff;
+}
+
+/* Title */
+
+.form-card h1 {
+    font-size: 30px;
+
+    margin-bottom: 38px;
+
+    color: #e0ff00;
+}
+
+/* Form Group */
+
+.form-group {
+    width: 100%;
+
+    margin-bottom: 25px;
+}
+
+/* Labels */
+
+.form-group label {
+    display: block;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    color: #ffffff;
+
+    margin-bottom: 9px;
+}
+
+/* Inputs */
+
+.form-group input {
+    width: 100%;
+
+    height: 47px;
+
+    background: #1b2638;
+
+    border: 1px solid #394b24;
+
+    border-radius: 7px;
+
+    padding: 0 15px;
+
+    color: white;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+/* Input Placeholder */
+
+.form-group input::placeholder {
+    color: #8993a5;
+}
+
+/* Input Focus */
+
+.form-group input:focus {
+    border-color: #e0ff00;
+
+    box-shadow: 0 0 5px rgba(224, 255, 0, 0.25);
+}
+
+/* Select */
+
+.form-group select {
+    width: 100%;
+
+    height: 47px;
+
+    background-color: #1b2638;
+
+    border: 1px solid #394b24;
+
+    border-radius: 7px;
+
+    padding: 0 15px;
+
+    color: white;
+
+    font-size: 16px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    appearance: auto;
+}
+
+/* Select Focus */
+
+.form-group select:focus {
+    border-color: #e0ff00;
+
+    box-shadow: 0 0 5px rgba(224, 255, 0, 0.25);
+}
+
+/* Select Options */
+
+.form-group select option {
+    background-color: #1b2638;
+
+    color: white;
+}
+
+/* Button */
+
+.btn-primary {
+    width: 100%;
+
+    height: 52px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #e0ff00;
+
+    color: #000;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #c8e600;
+
+    transform: translateY(-1px);
+}
+
+/* Error */
+
+.alert-danger {
+    background-color: #35171b;
+
+    border: 1px solid #8b3038;
+
+    border-radius: 7px;
+
+    padding: 12px 18px;
+
+    margin-top: 20px;
+
+    color: #ffb3b3;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+/* Result */
+
+.bmi-result {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    background-color: #1b2638;
+
+    border: 1px solid rgba(224, 255, 0, 0.25);
+
+    border-radius: 10px;
+}
+
+.bmi-result h2 {
+    color: white;
+
+    font-size: 20px;
+
+    margin-bottom: 15px;
+}
+
+.bmi-number {
+    color: #e0ff00;
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.bmi-result p {
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+/* Calories */
+
+.calories-result {
+    margin-top: 25px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid rgba(224, 255, 0, 0.2);
+}
+
+.calories-result h2 {
+    color: white;
+
+    font-size: 20px;
+
+    margin-bottom: 12px;
+}
+
+.calories-number {
+    color: #e0ff00;
+
+    font-size: 32px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.calories-number span {
+    color: white;
+
+    font-size: 16px;
+}
+
+.calories-result p {
+    color: #9ca3af;
+
+    font-size: 14px;
+}
+
+/* Responsive */
+
+@media (max-width: 750px) {
+    .form-card {
+        width: 95%;
+
+        padding: 35px 25px;
+    }
+
+    .form-card h1 {
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 450px) {
+    body {
+        padding: 10px;
+    }
+
+    .form-card {
+        width: 100%;
+
+        padding: 30px 20px;
+    }
+
+    .form-group input,
+    .form-group select {
+        height: 45px;
+    }
+
+    .btn-primary {
+        height: 48px;
+    }
+}
