@@ -1,0 +1,230 @@
+.tv-page {
+    max-width: 100%;
+    margin: auto;
+    padding: 110px 20px 60px;
+    background-color: #141b26;
+}
+
+.tv-header {
+    margin-bottom: 24px;
+}
+
+.tv-header h1 {
+    margin: 0 0 4px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #ccff00;
+    letter-spacing: -0.02em;
+}
+
+.tv-subtitle {
+    margin: 0;
+    color: #8b93a3;
+    font-size: 14px;
+}
+
+/* ============= Tabs ============= */
+
+.tv-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.tv-tab {
+    background: #141b26;
+    border: 1px solid #2a3242;
+    color: #8b93a3;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.tv-tab:hover {
+    border-color: #c6ff3d;
+    color: #f3f5f8;
+}
+
+.tv-tab.active {
+    background: #c6ff3d;
+    border-color: #c6ff3d;
+    color: #0b0f17;
+}
+
+/* ============= Panels ============= */
+
+.tv-panel {
+    display: none;
+}
+
+.tv-panel.active {
+    display: block;
+}
+
+.tv-empty {
+    color: #8b93a3;
+    font-size: 14px;
+    padding: 20px 0;
+}
+
+/* ============= Video grid ============= */
+
+.tv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.tv-card {
+    background: #141b26;
+    border: 1px solid #2a3242;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.tv-video-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    background: #000;
+}
+
+.tv-video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.tv-title {
+    margin: 0;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #f3f5f8;
+}
+
+/* ============= Alerts ============= */
+
+.tv-alert {
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    font-size: 13.5px;
+}
+
+.tv-alert-success {
+    background: rgba(111, 224, 138, 0.1);
+    border: 1px solid rgba(111, 224, 138, 0.35);
+    color: #6fe08a;
+}
+
+.tv-alert-error {
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.35);
+    color: #ff6b6b;
+}
+
+.tv-alert-error ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+/* ============= Add video form (owner) ============= */
+
+.tv-add-form {
+    background: #141b26;
+    border: 1px solid #2a3242;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 28px;
+}
+
+.tv-add-title {
+    margin: 0 0 14px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #f3f5f8;
+}
+
+.tv-add-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.tv-add-form .form-group label {
+    display: block;
+    font-size: 12.5px;
+    color: #8b93a3;
+    margin-bottom: 6px;
+}
+
+.tv-add-form .form-group input,
+.tv-add-form .form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    background: #1b2331;
+    border: 1px solid #2a3242;
+    border-radius: 8px;
+    color: #f3f5f8;
+    font-size: 14px;
+}
+
+.tv-add-form .form-group input:focus,
+.tv-add-form .form-group select:focus {
+    outline: none;
+    border-color: #c6ff3d;
+}
+
+.tv-add-btn {
+    padding: 10px 20px;
+    background: #c6ff3d;
+    color: #0b0f17;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.tv-add-btn:hover {
+    background: #a8e02b;
+}
+
+/* ============= Card footer + delete ============= */
+
+.tv-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 14px 16px;
+}
+
+.tv-card-footer .tv-title {
+    padding: 0;
+}
+
+.tv-delete-btn {
+    background: rgba(255, 107, 107, 0.12);
+    color: #ff6b6b;
+    border: 1px solid rgba(255, 107, 107, 0.35);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.tv-delete-btn:hover {
+    background: rgba(255, 107, 107, 0.22);
+}

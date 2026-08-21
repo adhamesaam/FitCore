@@ -1,6 +1,7 @@
 <?php
 include_once('../header.php')
 ?>
+<h1>a7a</h1>
 <link rel="stylesheet" href="styles/aboutStyle.css?<?php echo time(); ?>">
 <main>
     <section class="about-hero">
