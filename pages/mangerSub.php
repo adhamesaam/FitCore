@@ -1,5 +1,9 @@
 <?php 
-include_once('../header.php')
+include_once('../header.php');
+if (!isset($_SESSION['id'])) {
+  header('Location: login.php');
+  exit();
+}
 ?>
 <link rel="stylesheet" href="styles/managerSub.css">    
 
