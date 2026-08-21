@@ -1,5 +1,15 @@
+<?php
+session_start();
+
+$error = $_SESSION['signup_errors'] ?? [];
+$old = $_SESSION['signup_old'] ?? ['name' => '', 'email' => '', 'role' => 'user', 'gender' => ''];
+
+unset($_SESSION['signup_errors']);
+unset($_SESSION['signup_old']);
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +43,7 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
+
             .image-box {
                 display: none;
             }
@@ -65,7 +76,8 @@
             color: #e0e7ff;
         }
 
-        input, select {
+        input,
+        select {
             width: 100%;
             padding: 10px 12px;
             background: rgba(30, 41, 59, 0.8);
@@ -76,7 +88,8 @@
             font-family: Arial, sans-serif;
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             outline: none;
             border-color: #e0ff00;
             background: rgba(30, 41, 59, 1);
@@ -124,50 +137,87 @@
         button:hover {
             background: #f0ff1a;
         }
-        .login-link{
+
+        .login-link {
             text-align: center;
             margin-top: 20px;
         }
-        .login-link a{
+
+        .login-link a {
             text-decoration: none;
             color: #CCFF00;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
 
         <div class="form-card">
             <h1>Create Account</h1>
             <form method="POST" action="register.php">
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required>
-            </div>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($old['name']); ?>" required>
+                </div>
 
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($old['email']); ?>" required>
+                </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male" <?php echo $old['gender'] == 'male' ? 'selected' : ''; ?>>Male</option>
+                        <option value="female" <?php echo $old['gender'] == 'female' ? 'selected' : ''; ?>>Female</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-            </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
 
-            <button type="submit" name="createAccountBtn">Create Account</button>
-            <div class="login-link">
-                Already have an account? <a href="login.php">Sign In</a>
-            </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Account Type</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="roleUser" name="role" value="user" <?php echo $old['role'] == 'user' ? 'checked' : ''; ?>>
+                            <label for="roleUser">User (Member)</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="roleOwner" name="role" value="owner" <?php echo $old['role'] == 'owner' ? 'checked' : ''; ?>>
+                            <label for="roleOwner">Owner</label>
+                        </div>
+                    </div>
+                </div>
+
+                <?php if (!empty($error)) { ?>
+                    <div class="form-group" style="color:#ff6b6b; font-size:13px;">
+                        <ul style="margin:0; padding-left:18px;">
+                            <?php foreach ($error as $val) { ?>
+                                <li><?php echo htmlspecialchars($val); ?></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                <?php } ?>
+
+                <button type="submit" name="createAccountBtn">Create Account</button>
+                <div class="login-link">
+                    Already have an account? <a href="login.php">Sign In</a>
+                </div>
 
             </form>
 
         </div>
     </div>
 </body>
+
 </html>

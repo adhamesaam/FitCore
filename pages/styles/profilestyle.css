@@ -1,0 +1,271 @@
+:root {
+    --bg: #0b0f17;
+    --card: #141b26;
+    --input-bg: #1b2331;
+    --border: #2a3242;
+    --text: #f3f5f8;
+    --text-muted: #8b93a3;
+    --accent: #c6ff3d;
+    --accent-dark: #a8e02b;
+    --danger: #ff6b6b;
+    --danger-bg: rgba(255, 107, 107, 0.1);
+    --success: #6fe08a;
+    --success-bg: rgba(111, 224, 138, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family:
+        -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 48px 20px;
+    min-height: 100vh;
+}
+
+.profile-page {
+    width: 100%;
+    max-width: 480px;
+}
+
+.profile-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px 28px;
+}
+
+.profile-card-header h1 {
+    margin: 0 0 4px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.profile-subtitle {
+    margin: 0 0 24px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.alert-error,
+.alert-success {
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    font-size: 13.5px;
+}
+
+.alert-error {
+    background: var(--danger-bg);
+    border: 1px solid rgba(255, 107, 107, 0.35);
+    color: var(--danger);
+}
+
+.alert-error ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.alert-success {
+    background: var(--success-bg);
+    border: 1px solid rgba(111, 224, 138, 0.35);
+    color: var(--success);
+}
+
+/* ============= Avatar ============= */
+
+.avatar-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.avatar-img,
+.avatar-placeholder {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatar-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--input-bg);
+    color: var(--accent);
+    font-size: 34px;
+    font-weight: 700;
+    border: 2px dashed var(--border);
+}
+
+.avatar-upload {
+    position: relative;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.avatar-upload .avatar-img,
+.avatar-upload .avatar-placeholder {
+    border: 2px dashed var(--accent);
+}
+
+.avatar-upload-icon {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0f17;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    border: 3px solid var(--card);
+}
+
+.avatar-input {
+    display: none;
+}
+
+.upload-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* ============= View mode ============= */
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.info-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.info-value {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.role-badge {
+    display: inline-block;
+    width: fit-content;
+    padding: 3px 10px;
+    background: rgba(198, 255, 61, 0.12);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 13px;
+    text-transform: capitalize;
+}
+
+.btn-edit {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    color: #0b0f17;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.15s ease;
+}
+
+.btn-edit:hover {
+    background: var(--accent-dark);
+}
+
+/* ============= Edit mode / form ============= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 11px 12px;
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.btn-cancel,
+.btn-save {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-cancel {
+    background: var(--input-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn-save {
+    background: var(--accent);
+    color: #0b0f17;
+}
+
+.btn-save:hover {
+    background: var(--accent-dark);
+}
