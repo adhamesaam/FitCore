@@ -45,7 +45,10 @@
           <a class="nav-link" href="goals.php">Goals</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="gym-location.php">Gym Location</a>
+          <a class="nav-link" href="gymLocation.php">Gym Location</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="trainingVideos.php">Training videos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="settings.php">Settings</a>
