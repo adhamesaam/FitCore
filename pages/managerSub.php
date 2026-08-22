@@ -1,8 +1,55 @@
 <?php 
 include_once('../header.php');
+require_once('dbsubscription.php');
 if (!isset($_SESSION['id'])) {
   header('Location: login.php');
   exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['plan_id'])) {
+
+    $plan_id = (int) $_POST['plan_id'];
+    $user_id = (int) $_SESSION['id'];
+
+    $check_subscription = check_user_subscription($user_id);
+
+    if (!$check_subscription['status']) {
+        echo "<script>
+                alert('Error checking subscription.');
+              </script>";
+        exit();
+    }
+
+    if ($check_subscription['exists']) {
+        echo "<script>
+                alert('You already have an active subscription.');
+                window.location.href = 'userSub.php';
+              </script>";
+        exit();
+    }
+
+    if ($plan_id == 4) {
+        $plan_name = 'Starter';
+        $price = 59;
+    } elseif ($plan_id == 5) {
+        $plan_name = 'Premium';
+        $price = 99;
+    } elseif ($plan_id == 6) {
+        $plan_name = 'Elite';
+        $price = 149;
+    } else {
+        echo "<script>alert('Invalid plan selected.');</script>";
+        exit();
+    }
+
+    $_SESSION['subscription'] = [
+        'plan_id' => $plan_id,
+        'plan_name' => $plan_name,
+        'price' => $price
+    ];
+
+    header('Location: payment.php');
+    exit();
 }
 ?>
 <link rel="stylesheet" href="styles/managerSub.css">    
@@ -27,9 +74,16 @@ if (!isset($_SESSION['id'])) {
                 <div class="pricing-card">
                     <div class="card-plan-name">Starter</div>
                     <div class="card-plan-desc">Single-location gyms</div>
-                    <div class="card-price">$29</div>
+                    <div class="card-price">$59</div>
                     <div class="card-price-period">/month • $261/year (save 25%)</div>
-                    <button class="btn btn-primary card-button" name="subscribeBtn">Subscribe Now</button>
+                    <form method="POST" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
+                        <button type="submit"
+                                name="plan_id"
+                                value="4"
+                                class="btn btn-primary card-button">
+                            Subscribe Now
+                        </button>
+                    </form>
                     <ul class="card-features">
                         <li>Up to 100 members</li>
                         <li>1 branch location</li>
@@ -43,9 +97,16 @@ if (!isset($_SESSION['id'])) {
                 <div class="pricing-card featured">
                     <div class="card-plan-name">Professional</div>
                     <div class="card-plan-desc">Growing chains & franchises</div>
-                    <div class="card-price">$59</div>
+                    <div class="card-price">$99</div>
                     <div class="card-price-period">/month • $711/year (save 25%)</div>
-                    <button class="btn btn-primary card-button" name="subscribeBtn">Subscribe Now</button>
+                    <form method="POST" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
+                        <button type="submit"
+                                name="plan_id"
+                                value="5"
+                                class="btn btn-primary card-button">
+                            Subscribe Now
+                        </button>
+                    </form>
                     <ul class="card-features">
                         <li>Up to 500 members</li>
                         <li>Up to 3 branches</li>
@@ -60,9 +121,16 @@ if (!isset($_SESSION['id'])) {
                 <div class="pricing-card">
                     <div class="card-plan-name">Enterprise</div>
                     <div class="card-plan-desc">Large-scale operations</div>
-                    <div class="card-price">$99</div>
+                    <div class="card-price">$149</div>
                     <div class="card-price-period">/month + $30/branch</div>
-                    <button class="btn btn-primary card-button" name="subscribeBtn">Subscribe Now</button>
+                    <form method="POST" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
+                        <button type="submit"
+                                name="plan_id"
+                                value="6"
+                                class="btn btn-primary card-button">
+                            Subscribe Now
+                        </button>
+                    </form>
                     <ul class="card-features">
                         <li>Unlimited members</li>
                         <li>Unlimited branches</li>
