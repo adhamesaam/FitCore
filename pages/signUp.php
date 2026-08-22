@@ -27,7 +27,7 @@ unset($_SESSION['signup_old']);
 
         body {
             font-family: Arial, sans-serif;
-            background-color: black;
+            background-color: #0b0f17;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -54,7 +54,7 @@ unset($_SESSION['signup_old']);
         }
 
         .form-card {
-            background: rgba(15, 23, 42, 0.8);
+            background: #141b26;
             border: 1px solid rgba(224, 255, 0, 0.2);
             padding: 40px;
             border-radius: 12px;

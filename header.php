@@ -48,6 +48,9 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
             <a class="nav-link" href="gymloc.php">Gym Location</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="supplements.php">Supplements</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="trainingvideos.php">Training videos</a>
           </li>
           <li class="nav-item">

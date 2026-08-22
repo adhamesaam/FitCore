@@ -86,7 +86,6 @@ function add_subscription(
             "status" => true,
             "message" => "Subscription added successfully"
         ];
-
     } catch (PDOException $e) {
 
         $con = null;
@@ -98,3 +97,25 @@ function add_subscription(
     }
 }
 
+
+//paymentsub
+function activate_user_subscription($user_id, $plan_id, $plan_name, $price)
+{
+    try {
+        $con = dbconnect();
+        $sql = "UPDATE users
+                SET subscription_start = CURDATE(),
+                    subscription_end = DATE_ADD(CURDATE(), INTERVAL 1 MONTH),
+                    plan_id = :plan_id
+                WHERE id = :user_id";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([
+            ':plan_id' => $plan_id,
+            ':user_id' => $user_id
+        ]);
+        $con = null;
+        return ["status" => true, "message" => "Subscription activated"];
+    } catch (PDOException $e) {
+        return ["status" => false, "message" => $e->getMessage()];
+    }
+}

@@ -148,6 +148,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['loginbtn'])) {
     <title>Log In</title>
 
     <link rel="stylesheet" href="styles/loginstyle.css">
+    <style>
+        .login-card {
+            background-color: #141b26;
+        }
+
+        body {
+            background-color: #0b0f17;
+        }
+    </style>
 </head>
 
 <body>

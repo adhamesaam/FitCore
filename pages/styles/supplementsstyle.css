@@ -45,8 +45,6 @@
     color: #c6ff3d;
 }
 
-/* ============= Alerts ============= */
-
 .sp-alert {
     border-radius: 10px;
     padding: 12px 14px;
@@ -70,8 +68,6 @@
     margin: 0;
     padding-left: 18px;
 }
-
-/* ============= Add supplement form (admin) ============= */
 
 .sp-add-form {
     background: #141b26;
@@ -147,15 +143,11 @@
     background: #a8e02b;
 }
 
-/* ============= Empty state ============= */
-
 .sp-empty {
     color: #8b93a3;
     font-size: 14px;
     padding: 20px 0;
 }
-
-/* ============= Product grid ============= */
 
 .sp-grid {
     display: grid;
@@ -250,8 +242,6 @@
 .sp-cart-btn:hover {
     background: #a8e02b;
 }
-
-/* ============= Card footer (admin controls) ============= */
 
 .sp-card-footer {
     padding: 12px 16px;
