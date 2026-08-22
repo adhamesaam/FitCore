@@ -35,16 +35,14 @@ if (isset($_COOKIE["token"])) {
 
             $_SESSION['username']  = $user['fullname'];
             $_SESSION['useremail'] = $user['email'];
-            $_SESSION['id']        = $user['id'];
-            $_SESSION['role']      = $user['role'];
-
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['role']  = $user['role'];
             session_regenerate_id(true);
 
             header("Location: profile.php");
             exit;
         }
     } catch (PDOException $e) {
-        // invalid/expired token or db error -> just fall through to login form
     }
 }
 
@@ -55,7 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['loginbtn'])) {
     $uemail = cleaninput($_POST["loginemail"]);
     $upass = cleaninput($_POST["loginpassword"]);
 
-    // Email validation
     if (empty($uemail)) {
         $error[] = "user email required";
     }
@@ -64,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['loginbtn'])) {
         $error[] = "user email must contain @ and tld (.net, .org, .com...)";
     }
 
-    // Password validation
+
     if (empty($upass)) {
         $error[] = "Password Required";
     }
@@ -76,7 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['loginbtn'])) {
     if (empty($error)) {
 
         try {
-            // ======== select user from database
 
             $con = dbconnect();
 
@@ -119,12 +115,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['loginbtn'])) {
                         '/',
                         '',
                         false,
-                        true // HttpOnly - JS can't read the cookie
+                        true
                     );
                 }
 
-                // this was missing before - without it, a successful
-                // login just re-showed the login form
+
                 header("Location: profile.php");
                 exit;
             } else {

@@ -21,9 +21,7 @@ function cleaninput($data)
 $error = [];
 $success = "";
 
-// ==============================
-// Handle profile update
-// ==============================
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['savebtn'])) {
 
     $fullname = cleaninput($_POST["fullname"]);
@@ -84,14 +82,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['savebtn'])) {
     }
 }
 
-// ==============================
-// Fetch current user data
-// ==============================
+
 $userResult = get_user_by_id($_SESSION["id"]);
 $user = $userResult["status"] ? $userResult["data"] : null;
 
 if (!$user) {
-    // fallback to session data if row lookup somehow fails
+
     $user = [
         "fullname" => $_SESSION["username"] ?? "",
         "email" => $_SESSION["useremail"] ?? "",
@@ -101,7 +97,6 @@ if (!$user) {
     ];
 }
 
-$isEditing = isset($_GET["edit"]) && $_GET["edit"] == "1";
 $justUpdated = isset($_GET["updated"]);
 
 $photoUrl = !empty($user["photo"]) ? htmlspecialchars($user["photo"]) : null;
@@ -128,7 +123,7 @@ $initial = strtoupper(substr($user["fullname"] ?? "U", 0, 1));
                 <p class="profile-subtitle">Manage your personal information</p>
             </div>
 
-            <?php if ($justUpdated && !$isEditing) { ?>
+            <?php if ($justUpdated) { ?>
                 <div class="alert-success">Your profile has been updated.</div>
             <?php } ?>
 
@@ -142,105 +137,115 @@ $initial = strtoupper(substr($user["fullname"] ?? "U", 0, 1));
                 </div>
             <?php } ?>
 
-            <?php if (!$isEditing) { ?>
+            <div class="profile-view" id="viewMode" style="<?php echo !empty($error) ? 'display:none;' : ''; ?>">
 
-                <!-- ================= VIEW MODE ================= -->
-                <div class="profile-view">
+                <div class="avatar-block">
+                    <?php if ($photoUrl) { ?>
+                        <img src="<?php echo $photoUrl; ?>" alt="Profile photo" class="avatar-img">
+                    <?php } else { ?>
+                        <div class="avatar-placeholder"><?php echo htmlspecialchars($initial); ?></div>
+                    <?php } ?>
+                </div>
 
-                    <div class="avatar-block">
+                <div class="info-list">
+
+                    <div class="info-row">
+                        <span class="info-label">Full Name</span>
+                        <span class="info-value"><?php echo htmlspecialchars($user["fullname"]); ?></span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Email Address</span>
+                        <span class="info-value"><?php echo htmlspecialchars($user["email"]); ?></span>
+                    </div>
+
+                    <?php if (!empty($user["gender"])) { ?>
+                        <div class="info-row">
+                            <span class="info-label">Gender</span>
+                            <span class="info-value"><?php echo htmlspecialchars($user["gender"]); ?></span>
+                        </div>
+                    <?php } ?>
+
+                    <div class="info-row">
+                        <span class="info-label">Role</span>
+                        <span class="info-value role-badge"><?php echo htmlspecialchars($user["role"]); ?></span>
+                    </div>
+
+                </div>
+
+                <button type="button" id="editBtn" class="btn-edit">Edit Profile</button>
+
+            </div>
+
+            <form method="POST" action="profile.php" enctype="multipart/form-data" class="profile-form" id="editMode" style="<?php echo !empty($error) ? '' : 'display:none;'; ?>">
+
+                <div class="avatar-block">
+
+                    <label for="photo" class="avatar-upload">
                         <?php if ($photoUrl) { ?>
                             <img src="<?php echo $photoUrl; ?>" alt="Profile photo" class="avatar-img">
                         <?php } else { ?>
                             <div class="avatar-placeholder"><?php echo htmlspecialchars($initial); ?></div>
                         <?php } ?>
-                    </div>
+                        <span class="avatar-upload-icon">&#8593;</span>
+                    </label>
 
-                    <div class="info-list">
-
-                        <div class="info-row">
-                            <span class="info-label">Full Name</span>
-                            <span class="info-value"><?php echo htmlspecialchars($user["fullname"]); ?></span>
-                        </div>
-
-                        <div class="info-row">
-                            <span class="info-label">Email Address</span>
-                            <span class="info-value"><?php echo htmlspecialchars($user["email"]); ?></span>
-                        </div>
-
-                        <?php if (!empty($user["gender"])) { ?>
-                            <div class="info-row">
-                                <span class="info-label">Gender</span>
-                                <span class="info-value"><?php echo htmlspecialchars($user["gender"]); ?></span>
-                            </div>
-                        <?php } ?>
-
-                        <div class="info-row">
-                            <span class="info-label">Role</span>
-                            <span class="info-value role-badge"><?php echo htmlspecialchars($user["role"]); ?></span>
-                        </div>
-
-                    </div>
-
-                    <a href="profile.php?edit=1" class="btn-edit">Edit Profile</a>
+                    <input type="file" id="photo" name="photo" accept="image/*" class="avatar-input">
+                    <span class="upload-hint">Click the circle to change photo</span>
 
                 </div>
 
-            <?php } else { ?>
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input
+                        type="text"
+                        id="fullname"
+                        name="fullname"
+                        value="<?php echo htmlspecialchars($user["fullname"]); ?>"
+                        required>
+                </div>
 
-                <!-- ================= EDIT MODE ================= -->
-                <form method="POST" action="profile.php" enctype="multipart/form-data" class="profile-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="<?php echo htmlspecialchars($user["email"]); ?>"
+                        required>
+                </div>
 
-                    <div class="avatar-block">
+                <div class="form-actions">
+                    <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
+                    <button type="submit" name="savebtn" class="btn-save">Save Changes</button>
+                </div>
 
-                        <label for="photo" class="avatar-upload">
-                            <?php if ($photoUrl) { ?>
-                                <img src="<?php echo $photoUrl; ?>" alt="Profile photo" class="avatar-img">
-                            <?php } else { ?>
-                                <div class="avatar-placeholder"><?php echo htmlspecialchars($initial); ?></div>
-                            <?php } ?>
-                            <span class="avatar-upload-icon">&#8593;</span>
-                        </label>
-
-                        <input type="file" id="photo" name="photo" accept="image/*" class="avatar-input">
-                        <span class="upload-hint">Click the circle to change photo</span>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fullname">Full Name</label>
-                        <input
-                            type="text"
-                            id="fullname"
-                            name="fullname"
-                            value="<?php echo htmlspecialchars($user["fullname"]); ?>"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value="<?php echo htmlspecialchars($user["email"]); ?>"
-                            required>
-                    </div>
-
-                    <div class="form-actions">
-                        <a href="profile.php" class="btn-cancel">Cancel</a>
-                        <button type="submit" name="savebtn" class="btn-save">Save Changes</button>
-                    </div>
-
-                </form>
-
-            <?php } ?>
+            </form>
 
         </div>
 
     </div>
 
     <script>
-        // Preview the chosen photo immediately, before the form is submitted
+        const editBtn = document.getElementById('editBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const viewMode = document.getElementById('viewMode');
+        const editMode = document.getElementById('editMode');
+
+        if (editBtn) {
+            editBtn.addEventListener('click', function() {
+                viewMode.style.display = 'none';
+                editMode.style.display = 'block';
+            });
+        }
+
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', function() {
+                editMode.style.display = 'none';
+                viewMode.style.display = 'block';
+            });
+        }
+
         const photoInput = document.getElementById('photo');
         if (photoInput) {
             photoInput.addEventListener('change', function(e) {

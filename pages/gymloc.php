@@ -71,9 +71,7 @@ function cleaninput($data)
 
 $error = [];
 
-// ==============================
-// Add branch (admin only)
-// ==============================
+
 if ($isadmin && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addBranchBtn'])) {
 
     $name = cleaninput($_POST["name"] ?? "");
@@ -98,9 +96,7 @@ if ($isadmin && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addBranchB
     }
 }
 
-// ==============================
-// Delete branch (admin only)
-// ==============================
+
 if ($isadmin && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['deleteBranchBtn'])) {
 
     $gymId = $_POST["gymId"] ?? null;
@@ -145,7 +141,6 @@ $locations = $result["status"] ? $result["data"] : [];
 
     <?php if ($isadmin) { ?>
 
-        <!-- ================= Add branch form (admin only) ================= -->
         <form method="POST" action="gymloc.php" class="gymloc-add-form">
 
             <h3 class="gymloc-add-title">Add a new branch</h3>

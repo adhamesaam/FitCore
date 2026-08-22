@@ -75,11 +75,12 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
             <a class="nav-link" href="supplements.php">Supplements</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="carts.php">Cart</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="gymloc.php">Our Branches</a>
           </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="carts.php">Cart</a>
+          </li> -->
+
         <?php endif; ?>
 
         <?php if (!$isLoggedIn): ?>

@@ -21,7 +21,6 @@ function get_all_training_videos()
     }
 }
 
-// Only the default/free videos - for non-subscribed users
 function get_default_training_videos()
 {
     try {
