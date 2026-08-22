@@ -80,7 +80,7 @@ if (isset($_POST['addmember'])) {
                             <label class="form-label">Role</label>
                             <select id="role" name="role" class="form-control">
                                 <option selected disabled>--Please select role--</option>
-                                <option value="member">Member</option>
+                                <option value="user">Member</option>
                                 <option value="trainer">Trainer</option>
                                 <option value="admin" <?php echo $adminCapReached ? 'disabled' : ''; ?>>
                                     Admin<?php echo $adminCapReached ? ' (limit reached)' : ''; ?>
