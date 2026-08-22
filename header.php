@@ -65,9 +65,7 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
           <li class="nav-item">
             <a class="nav-link" href="userManager.php">Dashboard</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="managerSub.php">Subscription</a>
-          </li> -->
+
           <li class="nav-item">
             <a class="nav-link" href="trainingvideos.php">Training videos</a>
           </li>
