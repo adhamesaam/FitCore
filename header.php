@@ -62,9 +62,9 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
           <li class="nav-item">
             <a class="nav-link" href="userManager.php">Dashboard</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="managerSub.php">Subscription</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="trainingvideos.php">Training videos</a>
           </li>
@@ -83,7 +83,6 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
         <?php endif; ?>
       </ul>
 
-      <!-- Login / Logout - always pinned to the right on desktop -->
       <div class="d-none d-lg-block">
         <?php if ($isLoggedIn): ?>
           <button class="btn btn-outline-danger" onclick="window.location.href='logout.php'">Logout</button>
@@ -92,7 +91,6 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
         <?php endif; ?>
       </div>
 
-      <!-- Mobile Navigation (hamburger menu) -->
       <button class="navbar-toggler d-lg-none ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
