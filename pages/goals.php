@@ -24,7 +24,6 @@ if (!isset($_SESSION['id'])) {
   <section class="goals-section">
     <div class="container-lg">
 
-      <!-- Primary daily calorie target -->
       <div class="row mb-5">
         <div class="col-12">
           <div class="target-card d-flex flex-wrap justify-content-between align-items-center gap-3">
@@ -54,7 +53,6 @@ if (!isset($_SESSION['id'])) {
         </div>
       </div>
 
-      <!-- Goals list header -->
       <div class="row mb-4">
         <div class="col-12 d-flex flex-wrap justify-content-between align-items-center gap-2">
           <h2 class="section-title">Your <span class="highlight">Goals</span></h2>
@@ -64,12 +62,9 @@ if (!isset($_SESSION['id'])) {
         </div>
       </div>
 
-      <!-- Goals grid -->
       <div class="row g-4" id="goalsGrid">
-        <!-- goal cards injected by JS -->
       </div>
 
-      <!-- Empty state (shown/hidden by JS) -->
       <div class="empty-state d-none" id="emptyState">
         <i class="fas fa-bullseye fa-2x mb-3" style="color: var(--neon-yellow);"></i>
         <p class="mb-0">No goals yet. Click "Add Goal" to create your first one.</p>
@@ -80,7 +75,6 @@ if (!isset($_SESSION['id'])) {
 
 </main>
 
-<!-- Add / Edit Goal Modal -->
 <div class="modal fade" id="addGoalModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content fitcore-modal">
@@ -125,44 +119,38 @@ if (!isset($_SESSION['id'])) {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/*
-  Simple client-side CRUD for goals, persisted in localStorage so the page
-  keeps working even without a backend endpoint wired up yet.
-  Replace the storage calls below with real API calls once the FitCore
-  backend exposes goal endpoints.
-*/
-const STORAGE_KEY = 'fitcore_goals';
-const TARGET_KEY = 'fitcore_daily_target';
+  const STORAGE_KEY = 'fitcore_goals';
+  const TARGET_KEY = 'fitcore_daily_target';
 
-const goalsGrid = document.getElementById('goalsGrid');
-const emptyState = document.getElementById('emptyState');
-const goalModalEl = document.getElementById('addGoalModal');
-const goalModal = new bootstrap.Modal(goalModalEl);
-const goalModalTitle = document.getElementById('goalModalTitle');
-const goalForm = document.getElementById('goalForm');
+  const goalsGrid = document.getElementById('goalsGrid');
+  const emptyState = document.getElementById('emptyState');
+  const goalModalEl = document.getElementById('addGoalModal');
+  const goalModal = new bootstrap.Modal(goalModalEl);
+  const goalModalTitle = document.getElementById('goalModalTitle');
+  const goalForm = document.getElementById('goalForm');
 
-function loadGoals() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-}
-
-function saveGoals(goals) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(goals));
-}
-
-function renderGoals() {
-  const goals = loadGoals();
-  goalsGrid.innerHTML = '';
-
-  if (goals.length === 0) {
-    emptyState.classList.remove('d-none');
-    return;
+  function loadGoals() {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
   }
-  emptyState.classList.add('d-none');
 
-  goals.forEach(goal => {
-    const col = document.createElement('div');
-    col.className = 'col-md-6 col-lg-4';
-    col.innerHTML = `
+  function saveGoals(goals) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(goals));
+  }
+
+  function renderGoals() {
+    const goals = loadGoals();
+    goalsGrid.innerHTML = '';
+
+    if (goals.length === 0) {
+      emptyState.classList.remove('d-none');
+      return;
+    }
+    emptyState.classList.add('d-none');
+
+    goals.forEach(goal => {
+      const col = document.createElement('div');
+      col.className = 'col-md-6 col-lg-4';
+      col.innerHTML = `
       <div class="goal-card">
         <span class="goal-type">${goal.type}</span>
         <h4>${goal.name}</h4>
@@ -177,122 +165,132 @@ function renderGoals() {
         </div>
       </div>
     `;
-    goalsGrid.appendChild(col);
-  });
+      goalsGrid.appendChild(col);
+    });
 
-  document.querySelectorAll('.edit-goal-btn').forEach(btn => {
-    btn.addEventListener('click', () => openEditModal(btn.dataset.id));
-  });
-  document.querySelectorAll('.delete-goal-btn').forEach(btn => {
-    btn.addEventListener('click', () => deleteGoal(btn.dataset.id));
-  });
-}
-
-function openAddModal() {
-  goalModalTitle.textContent = 'Add Goal';
-  goalForm.reset();
-  document.getElementById('goalId').value = '';
-}
-
-function openEditModal(id) {
-  const goals = loadGoals();
-  const goal = goals.find(g => g.id === id);
-  if (!goal) return;
-
-  goalModalTitle.textContent = 'Edit Goal';
-  document.getElementById('goalId').value = goal.id;
-  document.getElementById('goalName').value = goal.name;
-  document.getElementById('goalType').value = goal.type;
-  document.getElementById('goalTarget').value = goal.target;
-  document.getElementById('goalUnit').value = goal.unit || '';
-  goalModal.show();
-}
-
-function deleteGoal(id) {
-  if (!confirm('Delete this goal?')) return;
-  const goals = loadGoals().filter(g => g.id !== id);
-  saveGoals(goals);
-  renderGoals();
-}
-
-document.getElementById('saveGoalBtn').addEventListener('click', () => {
-  if (!goalForm.reportValidity()) return;
-
-  const id = document.getElementById('goalId').value;
-  const name = document.getElementById('goalName').value.trim();
-  const type = document.getElementById('goalType').value;
-  const target = document.getElementById('goalTarget').value;
-  const unit = document.getElementById('goalUnit').value.trim();
-
-  let goals = loadGoals();
-
-  if (id) {
-    goals = goals.map(g => g.id === id ? { ...g, name, type, target, unit } : g);
-  } else {
-    goals.push({ id: Date.now().toString(), name, type, target, unit });
+    document.querySelectorAll('.edit-goal-btn').forEach(btn => {
+      btn.addEventListener('click', () => openEditModal(btn.dataset.id));
+    });
+    document.querySelectorAll('.delete-goal-btn').forEach(btn => {
+      btn.addEventListener('click', () => deleteGoal(btn.dataset.id));
+    });
   }
 
-  saveGoals(goals);
-  renderGoals();
-  goalModal.hide();
-});
-
-goalModalEl.addEventListener('show.bs.modal', (e) => {
-  if (!document.getElementById('goalId').value) {
-    // triggered by the "Add Goal" button rather than an edit click
+  function openAddModal() {
+    goalModalTitle.textContent = 'Add Goal';
+    goalForm.reset();
+    document.getElementById('goalId').value = '';
   }
-});
 
-document.querySelector('[data-bs-target="#addGoalModal"]').addEventListener('click', openAddModal);
+  function openEditModal(id) {
+    const goals = loadGoals();
+    const goal = goals.find(g => g.id === id);
+    if (!goal) return;
 
-/* ---------- Daily calorie target edit ---------- */
-const targetDisplayWrap = document.getElementById('targetDisplayWrap');
-const targetEditWrap = document.getElementById('targetEditWrap');
-const targetValueDisplay = document.getElementById('targetValueDisplay');
-const targetValueInput = document.getElementById('targetValueInput');
-const editTargetBtn = document.getElementById('editTargetBtn');
-const saveTargetBtn = document.getElementById('saveTargetBtn');
-const cancelTargetBtn = document.getElementById('cancelTargetBtn');
+    goalModalTitle.textContent = 'Edit Goal';
+    document.getElementById('goalId').value = goal.id;
+    document.getElementById('goalName').value = goal.name;
+    document.getElementById('goalType').value = goal.type;
+    document.getElementById('goalTarget').value = goal.target;
+    document.getElementById('goalUnit').value = goal.unit || '';
+    goalModal.show();
+  }
 
-function loadTarget() {
-  const stored = localStorage.getItem(TARGET_KEY);
-  return stored ? stored : targetValueDisplay.textContent;
-}
+  function deleteGoal(id) {
+    if (!confirm('Delete this goal?')) return;
+    const goals = loadGoals().filter(g => g.id !== id);
+    saveGoals(goals);
+    renderGoals();
+  }
 
-function initTarget() {
-  const value = loadTarget();
-  targetValueDisplay.textContent = value;
-  targetValueInput.value = value;
-}
+  document.getElementById('saveGoalBtn').addEventListener('click', () => {
+    if (!goalForm.reportValidity()) return;
 
-function toggleTargetEdit(isEditing) {
-  targetDisplayWrap.classList.toggle('d-none', isEditing);
-  targetEditWrap.classList.toggle('d-none', !isEditing);
-  targetEditWrap.classList.toggle('d-flex', isEditing);
-  editTargetBtn.classList.toggle('d-none', isEditing);
-  saveTargetBtn.classList.toggle('d-none', !isEditing);
-  cancelTargetBtn.classList.toggle('d-none', !isEditing);
-}
+    const id = document.getElementById('goalId').value;
+    const name = document.getElementById('goalName').value.trim();
+    const type = document.getElementById('goalType').value;
+    const target = document.getElementById('goalTarget').value;
+    const unit = document.getElementById('goalUnit').value.trim();
 
-editTargetBtn.addEventListener('click', () => {
-  targetValueInput.value = targetValueDisplay.textContent;
-  toggleTargetEdit(true);
-  targetValueInput.focus();
-});
+    let goals = loadGoals();
 
-cancelTargetBtn.addEventListener('click', () => {
-  toggleTargetEdit(false);
-});
+    if (id) {
+      goals = goals.map(g => g.id === id ? {
+        ...g,
+        name,
+        type,
+        target,
+        unit
+      } : g);
+    } else {
+      goals.push({
+        id: Date.now().toString(),
+        name,
+        type,
+        target,
+        unit
+      });
+    }
 
-saveTargetBtn.addEventListener('click', () => {
-  const newValue = targetValueInput.value;
-  if (newValue === '' || Number(newValue) < 0) return;
-  targetValueDisplay.textContent = newValue;
-  localStorage.setItem(TARGET_KEY, newValue);
-  toggleTargetEdit(false);
-});
+    saveGoals(goals);
+    renderGoals();
+    goalModal.hide();
+  });
 
-/* ---------- Init ---------- */
-initTarget();
-renderGoals();
+  goalModalEl.addEventListener('show.bs.modal', (e) => {
+    if (!document.getElementById('goalId').value) {
+      // triggered by the "Add Goal" button rather than an edit click
+    }
+  });
+
+  document.querySelector('[data-bs-target="#addGoalModal"]').addEventListener('click', openAddModal);
+
+  const targetDisplayWrap = document.getElementById('targetDisplayWrap');
+  const targetEditWrap = document.getElementById('targetEditWrap');
+  const targetValueDisplay = document.getElementById('targetValueDisplay');
+  const targetValueInput = document.getElementById('targetValueInput');
+  const editTargetBtn = document.getElementById('editTargetBtn');
+  const saveTargetBtn = document.getElementById('saveTargetBtn');
+  const cancelTargetBtn = document.getElementById('cancelTargetBtn');
+
+  function loadTarget() {
+    const stored = localStorage.getItem(TARGET_KEY);
+    return stored ? stored : targetValueDisplay.textContent;
+  }
+
+  function initTarget() {
+    const value = loadTarget();
+    targetValueDisplay.textContent = value;
+    targetValueInput.value = value;
+  }
+
+  function toggleTargetEdit(isEditing) {
+    targetDisplayWrap.classList.toggle('d-none', isEditing);
+    targetEditWrap.classList.toggle('d-none', !isEditing);
+    targetEditWrap.classList.toggle('d-flex', isEditing);
+    editTargetBtn.classList.toggle('d-none', isEditing);
+    saveTargetBtn.classList.toggle('d-none', !isEditing);
+    cancelTargetBtn.classList.toggle('d-none', !isEditing);
+  }
+
+  editTargetBtn.addEventListener('click', () => {
+    targetValueInput.value = targetValueDisplay.textContent;
+    toggleTargetEdit(true);
+    targetValueInput.focus();
+  });
+
+  cancelTargetBtn.addEventListener('click', () => {
+    toggleTargetEdit(false);
+  });
+
+  saveTargetBtn.addEventListener('click', () => {
+    const newValue = targetValueInput.value;
+    if (newValue === '' || Number(newValue) < 0) return;
+    targetValueDisplay.textContent = newValue;
+    localStorage.setItem(TARGET_KEY, newValue);
+    toggleTargetEdit(false);
+  });
+
+  initTarget();
+  renderGoals();
 </script>

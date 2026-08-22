@@ -6,14 +6,14 @@
 
 body {
     min-height: 100vh;
-    background-color: #000;
+
     font-family: Arial, Helvetica, sans-serif;
     color: white;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #141b26;
+    background-color: #0b0f17;
 }
 
 .login-container {
@@ -27,7 +27,7 @@ body {
 
 .login-card {
     width: 720px;
-    background-color: #0d1425;
+    background-color: #141b26;
 
     border: 1px solid #37451b;
     border-radius: 15px;

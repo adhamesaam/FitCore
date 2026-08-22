@@ -43,7 +43,6 @@ $error = [];
 $success = "";
 
 
-//  ==============================Add video (owner only)==============================
 
 if ($isadmin && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addVideoBtn'])) {
 
@@ -79,7 +78,6 @@ if ($isadmin && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addVideoBt
 }
 
 
-// ==============================Delete video (owner only)==============================
 
 if ($isadmin && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['deleteVideoBtn'])) {
 
@@ -139,7 +137,6 @@ foreach ($videos as $video) {
 
     <?php if ($isadmin) { ?>
 
-        <!-- ================= Add video form (owner only) ================= -->
         <form method="POST" action="trainingvideos.php" class="tv-add-form">
 
             <h3 class="tv-add-title">Add a new video</h3>
