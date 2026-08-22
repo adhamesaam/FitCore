@@ -11,80 +11,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['plan_id'])) {
     $plan_id = (int) $_POST['plan_id'];
     $user_id = (int) $_SESSION['id'];
 
-    $start_date = date('Y-m-d');
-    $end_date = date('Y-m-d', strtotime('+30 days'));
-
-    // Check if the user already has a subscription
     $check_subscription = check_user_subscription($user_id);
 
     if (!$check_subscription['status']) {
         echo "<script>
-                alert('Error checking your subscription: " .
-                htmlspecialchars($check_subscription['message'], ENT_QUOTES) .
-                "');
+                alert('Error checking subscription.');
               </script>";
         exit();
     }
 
-    // Determine selected plan
-    if ($plan_id == 1) {
-
-        $plan_name = 'Starter';
-        $price = 29;
-
-    } elseif ($plan_id == 2) {
-
-        $plan_name = 'Premium';
-        $price = 59;
-
-    } elseif ($plan_id == 3) {
-
-        $plan_name = 'Elite';
-        $price = 99;
-
-    } else {
-
-        echo "<script>
-                alert('Invalid plan selected.');
-              </script>";
-        exit();
-    }
-
-    // Prevent multiple subscriptions
     if ($check_subscription['exists']) {
-
         echo "<script>
                 alert('You already have an active subscription.');
                 window.location.href = 'userSub.php';
               </script>";
         exit();
-
-    } else {
-
-        $result = add_subscription(
-            $user_id,
-            $plan_id,
-            $plan_name,
-            $price,
-            $start_date,
-            $end_date
-        );
-
-        if ($result['status']) {
-
-            echo "<script>
-                    alert('Subscription added successfully!');
-                  </script>";
-
-        } else {
-
-            echo "<script>
-                    alert('Error: " .
-                    htmlspecialchars($result['message'], ENT_QUOTES) .
-                    "');
-                  </script>";
-        }
     }
+
+    if ($plan_id == 1) {
+        $plan_name = 'Starter';
+        $price = 29;
+    } elseif ($plan_id == 2) {
+        $plan_name = 'Premium';
+        $price = 59;
+    } elseif ($plan_id == 3) {
+        $plan_name = 'Elite';
+        $price = 99;
+    } else {
+        echo "<script>alert('Invalid plan selected.');</script>";
+        exit();
+    }
+
+    $_SESSION['subscription'] = [
+        'plan_id' => $plan_id,
+        'plan_name' => $plan_name,
+        'price' => $price
+    ];
+
+    header('Location: payment.php');
+    exit();
 }
 ?>
 <link rel="stylesheet" href="styles/userSub.css">
