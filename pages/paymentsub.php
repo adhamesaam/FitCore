@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirmPaymentBtn'])) 
 
             <div class="psub-summary-total">
                 <span class="psub-summary-total-label">Total (per month)</span>
-                <span class="psub-summary-total-value"><?php echo number_format($subscription['price']); ?> $</span>
+                <span class="psub-summary-total-value"><?php echo number_format($subscription['price']); ?>EGP</span>
             </div>
 
             <p class="psub-billing-note">You'll be billed this amount monthly until you cancel.</p>

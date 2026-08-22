@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['plan_id'])) {
             <div class="col-md-6 col-lg-4">
                 <div class="pricing-card">
                     <h3>Starter</h3>
-                    <div class="price">$29</div>
+                    <div class="price">600 EGP</div>
                     <div class="price-period">per month</div>
                     <ul class="list-unstyled features-list">
                         <li>Gym access during business hours</li>
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['plan_id'])) {
                 <div class="pricing-card featured">
                     <span class="pricing-badge">Most Popular</span>
                     <h3>Premium</h3>
-                    <div class="price">$59</div>
+                    <div class="price">1100 EGP</div>
                     <div class="price-period">per month</div>
                     <ul class="list-unstyled features-list">
                         <li>24/7 gym access</li>
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['plan_id'])) {
             <div class="col-md-6 col-lg-4">
                 <div class="pricing-card">
                     <h3>Elite</h3>
-                    <div class="price">$99</div>
+                    <div class="price">2000 EGP</div>
                     <div class="price-period">per month</div>
                     <ul class="list-unstyled features-list">
                         <li>Everything in Premium</li>
