@@ -82,8 +82,8 @@ if (isset($_POST['addmember'])) {
                                 <option selected disabled>--Please select role--</option>
                                 <option value="user">Member</option>
                                 <option value="trainer">Trainer</option>
-                                <option value="admin" <?php echo $adminCapReached ? 'disabled' : ''; ?>>
-                                    Admin<?php echo $adminCapReached ? ' (limit reached)' : ''; ?>
+                                <option value="Manager" <?php echo $adminCapReached ? 'disabled' : ''; ?>>
+                                    Manager<?php echo $adminCapReached ? ' (limit reached)' : ''; ?>
                                 </option>
                             </select>
                         </div>
