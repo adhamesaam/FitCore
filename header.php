@@ -38,36 +38,42 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
           </li>
         <?php endif; ?>
         <?php if ($isLoggedIn && $userRole === 'user'): ?>
-        <li class="nav-item">
-          <a class="nav-link" href="profile.php">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="goals.php">Goals</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="gymloc.php">Gym Location</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="trainingvideos.php">Training videos</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.php">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="goals.php">Goals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gymloc.php">Gym Location</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="trainingvideos.php">Training videos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="carts.php">Cart</a>
+          </li>
         <?php endif; ?>
 
         <?php if ($isLoggedIn && $userRole === 'admin'): ?>
-        <li class="nav-item">
-          <a class="nav-link" href="profile.php">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="userManager.php">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="managerSub.php">Subscription</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="trainingvideos.php">Training videos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="supplements.php">Supplements</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.php">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="userManager.php">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="managerSub.php">Subscription</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="trainingvideos.php">Training videos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="supplements.php">Supplements</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="carts.php">Cart</a>
+          </li>
         <?php endif; ?>
 
         <?php if (!$isLoggedIn): ?>
