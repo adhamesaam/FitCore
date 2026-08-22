@@ -65,9 +65,9 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
           <li class="nav-item">
             <a class="nav-link" href="userManager.php">Dashboard</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="managerSub.php">Subscription</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="trainingvideos.php">Training videos</a>
           </li>
@@ -76,6 +76,9 @@ $isLoggedIn = isset($_SESSION["id"]) ? true : false;
           </li>
           <li class="nav-item">
             <a class="nav-link" href="carts.php">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gymloc.php">Our Branches</a>
           </li>
         <?php endif; ?>
 
