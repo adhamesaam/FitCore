@@ -1,0 +1,316 @@
+.sp-page {
+    max-width: 100%;
+    margin: auto;
+    padding: 110px 20px 60px;
+    background-color: #141b26;
+}
+
+.sp-header {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.sp-header h1 {
+    margin: 0 0 4px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #ccff00;
+    letter-spacing: -0.02em;
+}
+
+.sp-subtitle {
+    margin: 0;
+    color: #8b93a3;
+    font-size: 14px;
+}
+
+.sp-cart-link {
+    background: #1b2331;
+    border: 1px solid #2a3242;
+    color: #f3f5f8;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.sp-cart-link:hover {
+    border-color: #c6ff3d;
+    color: #c6ff3d;
+}
+
+/* ============= Alerts ============= */
+
+.sp-alert {
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    font-size: 13.5px;
+}
+
+.sp-alert-success {
+    background: rgba(111, 224, 138, 0.1);
+    border: 1px solid rgba(111, 224, 138, 0.35);
+    color: #6fe08a;
+}
+
+.sp-alert-error {
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.35);
+    color: #ff6b6b;
+}
+
+.sp-alert-error ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+/* ============= Add supplement form (admin) ============= */
+
+.sp-add-form {
+    background: #141b26;
+    border: 1px solid #2a3242;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 28px;
+}
+
+.sp-add-title {
+    margin: 0 0 14px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #f3f5f8;
+}
+
+.sp-add-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.sp-add-form .form-group label {
+    display: block;
+    font-size: 12.5px;
+    color: #8b93a3;
+    margin-bottom: 6px;
+}
+
+.sp-add-form .form-group input,
+.sp-add-form .form-group textarea,
+.sp-add-form .form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    background: #1b2331;
+    border: 1px solid #2a3242;
+    border-radius: 8px;
+    color: #f3f5f8;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.sp-add-form .form-group textarea {
+    resize: vertical;
+    min-height: 70px;
+}
+
+.sp-add-form .form-group input:focus,
+.sp-add-form .form-group textarea:focus,
+.sp-add-form .form-group select:focus {
+    outline: none;
+    border-color: #c6ff3d;
+}
+
+.sp-add-form .form-group input[type='file'] {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.sp-add-btn {
+    padding: 10px 20px;
+    background: #c6ff3d;
+    color: #0b0f17;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.sp-add-btn:hover {
+    background: #a8e02b;
+}
+
+/* ============= Empty state ============= */
+
+.sp-empty {
+    color: #8b93a3;
+    font-size: 14px;
+    padding: 20px 0;
+}
+
+/* ============= Product grid ============= */
+
+.sp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.sp-card {
+    background: #141b26;
+    border: 1px solid #2a3242;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.sp-img-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 75%;
+    background: #0b0f17;
+}
+
+.sp-img-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sp-img-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2a3242;
+    font-size: 13px;
+}
+
+.sp-body {
+    padding: 14px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sp-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #f3f5f8;
+}
+
+.sp-desc {
+    margin: 0;
+    font-size: 13px;
+    color: #8b93a3;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.sp-price {
+    margin: 4px 0 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #c6ff3d;
+}
+
+.sp-cart-form {
+    padding: 0 16px 14px;
+}
+
+.sp-cart-btn {
+    width: 100%;
+    padding: 10px 12px;
+    background: #c6ff3d;
+    color: #0b0f17;
+    font-weight: 700;
+    font-size: 13.5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.sp-cart-btn:hover {
+    background: #a8e02b;
+}
+
+/* ============= Card footer (admin controls) ============= */
+
+.sp-card-footer {
+    padding: 12px 16px;
+    border-top: 1px solid #2a3242;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sp-price-form {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+}
+
+.sp-price-form input {
+    width: 100%;
+    padding: 7px 10px;
+    background: #1b2331;
+    border: 1px solid #2a3242;
+    border-radius: 6px;
+    color: #f3f5f8;
+    font-size: 13px;
+}
+
+.sp-price-form input:focus {
+    outline: none;
+    border-color: #c6ff3d;
+}
+
+.sp-save-btn {
+    background: rgba(198, 255, 61, 0.12);
+    color: #c6ff3d;
+    border: 1px solid rgba(198, 255, 61, 0.35);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.sp-save-btn:hover {
+    background: rgba(198, 255, 61, 0.22);
+}
+
+.sp-delete-btn {
+    background: rgba(255, 107, 107, 0.12);
+    color: #ff6b6b;
+    border: 1px solid rgba(255, 107, 107, 0.35);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.sp-delete-btn:hover {
+    background: rgba(255, 107, 107, 0.22);
+}
