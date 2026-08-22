@@ -1,8 +1,55 @@
 <?php
 include_once('../header.php');
+require_once("dbsubscription.php");
 if (!isset($_SESSION['id'])) {
   header('Location: login.php');
   exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['plan_id'])) {
+
+    $plan_id = (int) $_POST['plan_id'];
+    $user_id = (int) $_SESSION['id'];
+
+    $check_subscription = check_user_subscription($user_id);
+
+    if (!$check_subscription['status']) {
+        echo "<script>
+                alert('Error checking subscription.');
+              </script>";
+        exit();
+    }
+
+    if ($check_subscription['exists']) {
+        echo "<script>
+                alert('You already have an active subscription.');
+                window.location.href = 'userSub.php';
+              </script>";
+        exit();
+    }
+
+    if ($plan_id == 1) {
+        $plan_name = 'Starter';
+        $price = 29;
+    } elseif ($plan_id == 2) {
+        $plan_name = 'Premium';
+        $price = 59;
+    } elseif ($plan_id == 3) {
+        $plan_name = 'Elite';
+        $price = 99;
+    } else {
+        echo "<script>alert('Invalid plan selected.');</script>";
+        exit();
+    }
+
+    $_SESSION['subscription'] = [
+        'plan_id' => $plan_id,
+        'plan_name' => $plan_name,
+        'price' => $price
+    ];
+
+    header('Location: payment.php');
+    exit();
 }
 ?>
 <link rel="stylesheet" href="styles/userSub.css">
@@ -21,10 +68,11 @@ if (!isset($_SESSION['id'])) {
               <ul class="list-unstyled features-list">
                 <li>Gym access during business hours</li>
                 <li>Basic equipment access</li>
-                <li>Mobile app included</li>
                 <li>1 fitness assessment</li>
               </ul>
-              <button class="btn-primary-custom w-100">Choose Plan</button>
+              <form method="POST" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
+              <button type="submit" name="plan_id" value="1" class="btn-primary-custom w-100">Choose Plan</button>
+              </form>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
@@ -40,7 +88,9 @@ if (!isset($_SESSION['id'])) {
                 <li>Nutrition guidance</li>
                 <li>Priority support</li>
               </ul>
-              <button class="btn-primary-custom w-100">Choose Plan</button>
+              <form method="POST" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
+              <button type="submit" name="plan_id" value="2" class="btn-primary-custom w-100">Choose Plan</button>
+              </form> 
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
@@ -55,7 +105,9 @@ if (!isset($_SESSION['id'])) {
                 <li>Recovery services</li>
                 <li>VIP lounge access</li>
               </ul>
-              <button class="btn-primary-custom w-100">Choose Plan</button>
+              <form method="POST" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
+              <button type="submit" name="plan_id" value="3" class="btn-primary-custom w-100">Choose Plan</button>
+              </form>
             </div>
           </div>
         </div>
