@@ -1,0 +1,133 @@
+/* ==========================================
+   FitCore - Add Member
+   (extends userManager.css theme variables)
+   ========================================== */
+
+:root {
+  --primary-dark: #12141c;
+  --secondary-dark: #1e2230;
+  --navy: #292e42;
+  --slate-light: #94a3b8;
+  --neon-yellow: #ccff00;
+  --white: #ffffff;
+  --red: #ef4444;
+}
+
+/* Page */
+
+body {
+  background-color: var(--primary-dark);
+  color: var(--white);
+}
+
+main {
+  min-height: calc(100vh - 80px);
+  padding: 80px 20px;
+  background-color: var(--primary-dark);
+}
+
+/* Card */
+
+main .card {
+  background-color: var(--secondary-dark);
+  border: none;
+  border-radius: 15px;
+}
+
+main .card-body {
+  padding: 30px !important;
+}
+
+main h3 {
+  color: var(--white);
+}
+
+/* Labels */
+
+main .form-label {
+  color: var(--slate-light);
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+/* Inputs & selects */
+
+main .form-control {
+  background-color: var(--navy);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+main .form-control::placeholder {
+  color: var(--slate-light);
+}
+
+main .form-control:focus {
+  background-color: var(--navy);
+  color: var(--white);
+  box-shadow: 0 0 0 2px rgba(204, 255, 0, 0.35);
+}
+
+main select.form-control {
+  color: var(--slate-light);
+}
+
+main select.form-control:valid {
+  color: var(--white);
+}
+
+/* Alerts */
+
+main .alert-success {
+  background-color: rgba(204, 255, 0, 0.12);
+  color: var(--neon-yellow);
+  border: 1px solid rgba(204, 255, 0, 0.35);
+}
+
+main .alert-danger {
+  background-color: rgba(239, 68, 68, 0.12);
+  color: var(--red);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+/* Add Member button */
+
+main .btn-primary {
+  background-color: var(--neon-yellow) !important;
+  border-color: var(--neon-yellow) !important;
+  color: var(--primary-dark) !important;
+  font-weight: bold;
+}
+
+main .btn-primary:hover {
+  background-color: var(--white) !important;
+  border-color: var(--white) !important;
+}
+
+/* Cancel button */
+
+main .btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--slate-light);
+  color: var(--slate-light);
+}
+
+main .btn-secondary:hover {
+  background-color: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  main {
+    padding: 30px 15px;
+  }
+
+  main .card-body {
+    padding: 20px !important;
+  }
+}
